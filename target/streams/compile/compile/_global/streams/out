@@ -1,0 +1,4 @@
+[0m[[0m[31merror[0m] [0m[0mC:\Users\maha_\OneDrive\Documents\Fall 2021 Course content\SOEN 6441\SOEN-Gitterific\app\views\users.scala.html:10:21: value data is not a member of java.util.List[model.UsersList][0m
+[0m[[0m[31merror[0m] [0m[0m<center>User: @data.data.login</center>[0m
+[0m[[0m[31merror[0m] [0m[0m                    ^[0m
+[0m[[0m[31merror[0m] [0m[0mone error found[0m
