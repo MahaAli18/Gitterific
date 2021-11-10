@@ -1,6 +1,9 @@
-# play-java-starter-example
+# Gitterific
 
-This is a starter application that shows how Play works.  Please see the documentation at https://www.playframework.com/documentation/latest/Home for more details.
+The user has to be able to enter new search terms on the output page, which will result in 10 more results
+being displayed (i.e., a second search will add 10 more results above the 10 results from the first search
+and so on . Keep at most 10 search queries, removing the oldest when more searches are
+performed
 
 ## Running
 
@@ -16,18 +19,8 @@ And then go to http://localhost:9000 to see the running web application.
 
 There are several demonstration files available in this template.
 
-- `HomeController.java`:
+- `Application.java`:
 
-  Shows how to handle simple HTTP requests.
-
-- `AsyncController.java`:
-
-  Shows how to do asynchronous programming when handling a request.
-
-- `CountController.java`:
-
-  Shows how to inject a component into a controller and use the component when
-  handling requests.
 
 ## Components
 
