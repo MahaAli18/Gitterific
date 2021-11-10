@@ -3,17 +3,13 @@ package controllers;
 import javax.inject.Inject;
 
 import com.fasterxml.jackson.databind.JsonNode;
-
 import model.ListRepositories;
-import model.UsersList;
 import play.mvc.*;
 import play.data.DynamicForm;
 import play.data.FormFactory;
 import play.libs.ws.*;
 import play.mvc.Result;
 import services.RepositoryFetching;
-import services.UserFetching;
-
 import java.util.ArrayList;
 import java.util.List;
 import java.util.concurrent.CompletionStage;
