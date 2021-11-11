@@ -8,7 +8,7 @@ import model.ListRepositories;
 
 /**
  * 
- * @author maha_
+ * @author piedamsel46_
  *
  */
 
@@ -27,7 +27,7 @@ public class RepositoryFetching {
     	
     }
    /**
-    * @author maha_
+    * @author piedamsel46_
     * @param data iterating the json data
     * @return the data fetched
     * @throws InterruptedException
