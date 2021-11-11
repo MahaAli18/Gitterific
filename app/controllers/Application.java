@@ -29,7 +29,7 @@ public class Application extends Controller implements WSBodyReadables {
 		 List<ListRepositories> repos = new ArrayList<ListRepositories>();
 		 return ok(index.render(repos));
 	    }
-	 
+	
 	/**
 	 * @author maha_
 	 * @param query passing query to fetch the repository
