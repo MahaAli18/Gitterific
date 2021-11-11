@@ -42,10 +42,14 @@ public class Application extends Controller implements WSBodyReadables {
 		List<ListRepositories> repos = new ArrayList<ListRepositories>();
 		RepositoryFetching repoSearch = new RepositoryFetching();
 		WSRequest request = ws.url("https://api.github.com/search/repositories")
-				               .addHeader("Content-Type", "application/json")
-				               .addQueryParameter("q", query)
-				               .addQueryParameter("per_page", "10")
-				               .addQueryParameter("page", "1");
+		        .addHeader("Content-Type", "application/json")
+			.addQueryParameter("q", query)
+	               .addQueryParameter("sort", "updated")
+	               .addQueryParameter("order", "desc")
+	               .addQueryParameter("per_page", "10")
+	               .addQueryParameter("page", "1");
+		
+			
 		CompletionStage<JsonNode> jsonPromise = request.get().thenApply(x->x.getBody(json()));
 		repos = repoSearch.getList(jsonPromise.toCompletableFuture().get());
 		
