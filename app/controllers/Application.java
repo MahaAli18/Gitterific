@@ -19,7 +19,7 @@ import views.html.*;
 public class Application extends Controller implements WSBodyReadables {
 	
 	/**
-	 * @author maha_
+	 * @author piedamsel46_
 	 * Rendering the repositories list
 	 */
 	
@@ -31,7 +31,7 @@ public class Application extends Controller implements WSBodyReadables {
 	    }
 	
 	/**
-	 * @author maha_
+	 * @author piedamsel46_
 	 * @param query passing query to fetch the repository
 	 * @return the list of repositories
 	 * @throws InterruptedException
