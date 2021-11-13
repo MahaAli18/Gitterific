@@ -36,19 +36,13 @@ public class Application extends Controller implements WSBodyReadables {
 		  return ok(views.html.topics.render(topics));
 		  }
 
-	 
-	 
-	 
-	 
-	 
+	 	 
 	/**
 	 * @param query passing query to fetch the repository
 	 * @return the list of repositories
 	 * @throws InterruptedException
 	 * @throws ExecutionException
-	 */
-
-	 
+	 */	 
 	 
 	public Result fetch(String query) throws InterruptedException, ExecutionException{
 		List<ListRepositories> repos = new ArrayList<ListRepositories>();
@@ -91,9 +85,6 @@ public class Application extends Controller implements WSBodyReadables {
 		
 		return ok(views.html.topics.render(topics));
 	}
-	
-	
-	
 	
 	
 }//application

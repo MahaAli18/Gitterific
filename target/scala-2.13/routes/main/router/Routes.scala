@@ -118,8 +118,7 @@ class Routes(
       Seq(classOf[String], classOf[Asset]),
       "GET",
       this.prefix + """assets/""" + "$" + """file<.+>""",
-      """GET     /topics                   controllers.Application.topics
- Map static resources from the /public folder to the /assets URL path""",
+      """ Map static resources from the /public folder to the /assets URL path""",
       Seq()
     )
   )
