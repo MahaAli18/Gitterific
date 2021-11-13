@@ -49,11 +49,11 @@ package controllers.javascript {
     )
   
     // @LINE:9
-    def fetchUsers: JavaScriptReverseRoute = JavaScriptReverseRoute(
-      "controllers.Application.fetchUsers",
+    def topics: JavaScriptReverseRoute = JavaScriptReverseRoute(
+      "controllers.Application.topics",
       """
-        function(user0) {
-          return _wA({method:"GET", url:"""" + _prefix + { _defaultPrefix } + """" + "users/" + encodeURIComponent((""" + implicitly[play.api.mvc.PathBindable[String]].javascriptUnbind + """)("user", user0))})
+        function(query0) {
+          return _wA({method:"GET", url:"""" + _prefix + { _defaultPrefix } + """" + "topics" + _qS([(""" + implicitly[play.api.mvc.QueryStringBindable[String]].javascriptUnbind + """)("query", query0)])})
         }
       """
     )

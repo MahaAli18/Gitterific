@@ -39,9 +39,9 @@ package controllers {
     }
   
     // @LINE:9
-    def fetchUsers(user:String): Call = {
+    def topics(query:String): Call = {
       
-      Call("GET", _prefix + { _defaultPrefix } + "users/" + play.core.routing.dynamicString(implicitly[play.api.mvc.PathBindable[String]].unbind("user", user)))
+      Call("GET", _prefix + { _defaultPrefix } + "topics" + play.core.routing.queryString(List(Some(implicitly[play.api.mvc.QueryStringBindable[String]].unbind("query", query)))))
     }
   
     // @LINE:7

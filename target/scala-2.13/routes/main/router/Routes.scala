@@ -41,7 +41,7 @@ class Routes(
   def documentation = List(
     ("""GET""", this.prefix, """controllers.Application.index"""),
     ("""GET""", this.prefix + (if(this.prefix.endsWith("/")) "" else "/") + """fetch""", """controllers.Application.fetch(query:String)"""),
-    ("""GET""", this.prefix + (if(this.prefix.endsWith("/")) "" else "/") + """users/""" + "$" + """user<[^/]+>""", """controllers.Application.fetchUsers(user:String)"""),
+    ("""GET""", this.prefix + (if(this.prefix.endsWith("/")) "" else "/") + """topics""", """controllers.Application.topics(query:String)"""),
     ("""GET""", this.prefix + (if(this.prefix.endsWith("/")) "" else "/") + """assets/""" + "$" + """file<.+>""", """controllers.Assets.versioned(path:String = "/public", file:Asset)"""),
     Nil
   ).foldLeft(List.empty[(String,String,String)]) { (s,e) => e.asInstanceOf[Any] match {
@@ -88,18 +88,18 @@ class Routes(
   )
 
   // @LINE:9
-  private[this] lazy val controllers_Application_fetchUsers2_route = Route("GET",
-    PathPattern(List(StaticPart(this.prefix), StaticPart(this.defaultPrefix), StaticPart("users/"), DynamicPart("user", """[^/]+""",true)))
+  private[this] lazy val controllers_Application_topics2_route = Route("GET",
+    PathPattern(List(StaticPart(this.prefix), StaticPart(this.defaultPrefix), StaticPart("topics")))
   )
-  private[this] lazy val controllers_Application_fetchUsers2_invoker = createInvoker(
-    Application_0.fetchUsers(fakeValue[String]),
+  private[this] lazy val controllers_Application_topics2_invoker = createInvoker(
+    Application_0.topics(fakeValue[String]),
     play.api.routing.HandlerDef(this.getClass.getClassLoader,
       "router",
       "controllers.Application",
-      "fetchUsers",
+      "topics",
       Seq(classOf[String]),
       "GET",
-      this.prefix + """users/""" + "$" + """user<[^/]+>""",
+      this.prefix + """topics""",
       """""",
       Seq()
     )
@@ -118,7 +118,8 @@ class Routes(
       Seq(classOf[String], classOf[Asset]),
       "GET",
       this.prefix + """assets/""" + "$" + """file<.+>""",
-      """ Map static resources from the /public folder to the /assets URL path""",
+      """GET     /topics                   controllers.Application.topics
+ Map static resources from the /public folder to the /assets URL path""",
       Seq()
     )
   )
@@ -139,9 +140,9 @@ class Routes(
       }
   
     // @LINE:9
-    case controllers_Application_fetchUsers2_route(params@_) =>
-      call(params.fromPath[String]("user", None)) { (user) =>
-        controllers_Application_fetchUsers2_invoker.call(Application_0.fetchUsers(user))
+    case controllers_Application_topics2_route(params@_) =>
+      call(params.fromQuery[String]("query", None)) { (query) =>
+        controllers_Application_topics2_invoker.call(Application_0.topics(query))
       }
   
     // @LINE:12

@@ -1,4 +1,6 @@
-[0m[[0m[31merror[0m] [0m[0mC:\Users\maha_\OneDrive\Documents\Fall 2021 Course content\SOEN 6441\SOEN-Gitterific\app\views\users.scala.html:10:21: value data is not a member of java.util.List[model.UsersList][0m
-[0m[[0m[31merror[0m] [0m[0m<center>User: @data.data.login</center>[0m
-[0m[[0m[31merror[0m] [0m[0m                    ^[0m
-[0m[[0m[31merror[0m] [0m[0mone error found[0m
+[0m[[0m[31merror[0m] [0m[0mW:\Projects\Gitterific\app\services\TopicsRepositoryFetching.java:48:1: no suitable constructor found for ListTopicsRepos(java.lang.String,java.lang.String,java.lang.String)[0m
+[0m[[0m[31merror[0m] [0m[0m    constructor model.ListTopicsRepos.ListTopicsRepos() is not applicable[0m
+[0m[[0m[31merror[0m] [0m[0m      (actual and formal argument lists differ in length)[0m
+[0m[[0m[31merror[0m] [0m[0m    constructor model.ListTopicsRepos.ListTopicsRepos(java.lang.String,java.lang.String,java.lang.String,java.lang.String) is not applicable[0m
+[0m[[0m[31merror[0m] [0m[0m      (actual and formal argument lists differ in length)[0m
+[0m[[0m[31merror[0m] [0m[0mnew ListTopicsRepos(login,name,user_url)[0m
