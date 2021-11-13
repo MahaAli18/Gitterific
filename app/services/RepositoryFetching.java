@@ -42,9 +42,10 @@ public class RepositoryFetching {
     		String login = items.get("owner").get("login").asText();
     		String name = items.get("name").asText();
     		String user_url = items.get("url").asText().replaceAll("http.*?\\s", " ");
-    		String issues_url = items.get("issues_url").toString();
-    		String commits_url = items.get("commits_url").toString();
-    		repos.add(new ListRepositories(login,name,user_url, issues_url,commits_url));
+    		String issues_url = items.get("issues_url").asText();
+    		String visibility = items.get("visibility").asText();
+    		String commits_url = items.get("commits_url").asText();
+    		repos.add(new ListRepositories(login,name,user_url, issues_url,visibility,commits_url));
     	});
 		return repos;
     	
