@@ -1,0 +1,13 @@
+bin/
+/db
+.eclipse
+/lib/
+/logs/
+/modules
+/project/project
+/project/target
+/target
+tmp/
+*.eml
+/dist/
+.cache
