@@ -11,6 +11,7 @@ public class ListTopicsRepos {
       public String name;
       public String user_url;
       public String html_url;
+      public String topicword;
 //      public String issues_url;
 //      public String commits_url;
       
@@ -19,6 +20,8 @@ public class ListTopicsRepos {
     	  this.name = "";
     	  this.user_url = "";
     	  this.html_url="";
+    	  this.topicword="";
+    	  
 //    	  this.issues_url = "";
 //    	  this.commits_url = "";
     	  	  
@@ -30,13 +33,12 @@ public class ListTopicsRepos {
        * @param user_url
        * @param html_url
        */
-      public ListTopicsRepos(String login,String name,String user_url, String html_url) {
+      public ListTopicsRepos(String login,String name,String user_url, String html_url, String topicword) {
     	  this.login = login;	
     	  this.name = name;
     	  this.user_url = user_url;
     	  this.html_url=html_url;
-//    	  this.issues_url = issues_url; 
-//    	  this.commits_url = commits_url;  
+    	  this.topicword=topicword;
       }
       
       public String getUser() {
@@ -63,6 +65,14 @@ public class ListTopicsRepos {
     	  this.html_url=html_url;
       }
 
+      
+      public String gettopicword() {
+    	  return topicword;
+      }
+      
+      public void settopicword() {
+    	  this.topicword=topicword;
+      }
       
 /*      
       public String getissues_url() {
