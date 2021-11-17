@@ -40,7 +40,7 @@ h2 {
 		</tr>
 		@for(d <- data){
 		<tr>
-			<td>@d.name</td>
+			<td><a href="@routes.Application.navToRepositoryDetails(d.issues_url, d.commits_url, d.pulls_url, d.login, d.name, d.description)">@d.name</a></td>
 			<td>@d.repos_url</td>
 
 		</tr>
