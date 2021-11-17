@@ -11,7 +11,7 @@ public class Testing  extends WithApplication {
     public void renderTemplate(){
          Content html= views.html.index.render();
          assertEquals("text/html",html.contentType());
-         assertEquals(html.body().contains("Welcome To Gitterific"),true);
+         assertEquals(html.body().contains("Gitterific"),true);
 
      }
 
