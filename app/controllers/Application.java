@@ -5,6 +5,8 @@ import javax.inject.Inject;
 import com.fasterxml.jackson.databind.JsonNode;
 import model.ListRepositories;
 import model.ListTopicsRepos;
+import model.UserRepos;
+import model.UsersList;
 import play.mvc.*;
 import play.data.DynamicForm;
 import play.data.FormFactory;
@@ -12,14 +14,23 @@ import play.libs.ws.*;
 import play.mvc.Result;
 import services.RepositoryFetching;
 import services.TopicsRepositoryFetching;
+import services.UserFetching;
+import services.UserReposFetch;
+
 import java.util.ArrayList;
 import java.util.List;
 import java.util.concurrent.CompletionStage;
 import java.util.concurrent.ExecutionException;
 import views.html.*;
 
+/**
+ * Controller for query functionality
+ * @author maha_
+ *
+ */
+
 public class Application extends Controller implements WSBodyReadables {
-	
+
 	/**
 	 * Rendering the repositories list
 	 */
@@ -37,6 +48,20 @@ public class Application extends Controller implements WSBodyReadables {
 		  }
 
 	 	 
+	List<ListRepositories> get_repos = new ArrayList<ListRepositories>();
+	
+	/**
+	 * @return repos 
+	 * @throws InterruptedException error handling
+	 * @throws ExecutionException thrown when attempting to retrieve the result of a taskthat aborted by throwing an exception
+	 */
+
+	public Result index() throws InterruptedException, ExecutionException {
+		List<ListRepositories> repos = new ArrayList<ListRepositories>();
+		get_repos = new ArrayList<ListRepositories>();
+		return ok(index.render(repos));
+	}
+
 	/**
 	 * @param query passing query to fetch the repository
 	 * @return the list of repositories
@@ -45,7 +70,7 @@ public class Application extends Controller implements WSBodyReadables {
 	 */	 
 	 
 	public Result fetch(String query) throws InterruptedException, ExecutionException{
-		List<ListRepositories> repos = new ArrayList<ListRepositories>();
+
 		RepositoryFetching repoSearch = new RepositoryFetching();
 		WSRequest request = ws.url("https://api.github.com/search/repositories")
 				
@@ -58,6 +83,14 @@ public class Application extends Controller implements WSBodyReadables {
 	               .addQueryParameter("page", "1");
 		
 		
+				.addHeader("Content-Type", "application/json")
+				.addQueryParameter("q", query)
+				.addQueryParameter("sort", "updated")
+				.addQueryParameter("order", "desc")
+				.addQueryParameter("per_page", "10")
+				.addQueryParameter("page", "1");
+
+
 		CompletionStage<JsonNode> jsonPromise = request.get().thenApply(x->x.getBody(json()));
 		repos = repoSearch.getList(jsonPromise.toCompletableFuture().get());
 		

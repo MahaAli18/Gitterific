@@ -10,7 +10,7 @@ import _root_.play.libs.F
 // @LINE:7
 package controllers.javascript {
 
-  // @LINE:12
+  // @LINE:15
   class ReverseAssets(_prefix: => String) {
 
     def _defaultPrefix: String = {
@@ -18,7 +18,7 @@ package controllers.javascript {
     }
 
   
-    // @LINE:12
+    // @LINE:15
     def versioned: JavaScriptReverseRoute = JavaScriptReverseRoute(
       "controllers.Assets.versioned",
       """
@@ -38,6 +38,16 @@ package controllers.javascript {
     }
 
   
+    // @LINE:9
+    def topics: JavaScriptReverseRoute = JavaScriptReverseRoute(
+      "controllers.Application.topics",
+      """
+        function(query0) {
+          return _wA({method:"GET", url:"""" + _prefix + { _defaultPrefix } + """" + "topics" + _qS([(""" + implicitly[play.api.mvc.QueryStringBindable[String]].javascriptUnbind + """)("query", query0)])})
+        }
+      """
+    )
+  
     // @LINE:8
     def fetch: JavaScriptReverseRoute = JavaScriptReverseRoute(
       "controllers.Application.fetch",
@@ -48,12 +58,22 @@ package controllers.javascript {
       """
     )
   
-    // @LINE:9
-    def topics: JavaScriptReverseRoute = JavaScriptReverseRoute(
-      "controllers.Application.topics",
+    // @LINE:10
+    def fetchUsers: JavaScriptReverseRoute = JavaScriptReverseRoute(
+      "controllers.Application.fetchUsers",
       """
-        function(query0) {
-          return _wA({method:"GET", url:"""" + _prefix + { _defaultPrefix } + """" + "topics" + _qS([(""" + implicitly[play.api.mvc.QueryStringBindable[String]].javascriptUnbind + """)("query", query0)])})
+        function(user0) {
+          return _wA({method:"GET", url:"""" + _prefix + { _defaultPrefix } + """" + "users/" + encodeURIComponent((""" + implicitly[play.api.mvc.PathBindable[String]].javascriptUnbind + """)("user", user0))})
+        }
+      """
+    )
+  
+    // @LINE:11
+    def fetchUsersRepos: JavaScriptReverseRoute = JavaScriptReverseRoute(
+      "controllers.Application.fetchUsersRepos",
+      """
+        function(user0) {
+          return _wA({method:"GET", url:"""" + _prefix + { _defaultPrefix } + """" + "users/" + encodeURIComponent((""" + implicitly[play.api.mvc.PathBindable[String]].javascriptUnbind + """)("user", user0)) + "/repos"})
         }
       """
     )

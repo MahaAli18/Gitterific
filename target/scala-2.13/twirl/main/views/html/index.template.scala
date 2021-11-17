@@ -27,43 +27,46 @@ object index extends _root_.play.twirl.api.BaseScalaTemplate[play.twirl.api.Html
   def apply/*1.2*/(data: List[model.ListRepositories]):play.twirl.api.HtmlFormat.Appendable = {
     _display_ {
       {
+/*2.2*/import java.math.BigInteger; var count=0
 
 
-Seq[Any](format.raw/*1.38*/("""
-"""),format.raw/*2.1*/("""<html>
+Seq[Any](format.raw/*1.38*/(""" 
+"""),format.raw/*3.1*/("""<html>
 <style>
-table """),format.raw/*4.7*/("""{"""),format.raw/*4.8*/("""
-	"""),format.raw/*5.2*/("""font-family: arial, sans-serif;
+table """),format.raw/*5.7*/("""{"""),format.raw/*5.8*/("""
+	"""),format.raw/*6.2*/("""font-family: arial, sans-serif;
 	border-collapse: collapse;
-	width: 100%;
-"""),format.raw/*8.1*/("""}"""),format.raw/*8.2*/("""
+	width: 90%;
+"""),format.raw/*9.1*/("""}"""),format.raw/*9.2*/("""
 
-"""),format.raw/*10.1*/("""td, th """),format.raw/*10.8*/("""{"""),format.raw/*10.9*/("""
-	"""),format.raw/*11.2*/("""border: 1px solid #dddddd;
+"""),format.raw/*11.1*/("""td, th """),format.raw/*11.8*/("""{"""),format.raw/*11.9*/("""
+	"""),format.raw/*12.2*/("""border: 1px solid #dddddd;
 	text-align: left;
 	padding: 8px;
-"""),format.raw/*14.1*/("""}"""),format.raw/*14.2*/("""
+	overflow-wrap: anywhere;
+"""),format.raw/*16.1*/("""}"""),format.raw/*16.2*/("""
 
-"""),format.raw/*16.1*/("""tr:nth-child(even) """),format.raw/*16.20*/("""{"""),format.raw/*16.21*/("""
-	"""),format.raw/*17.2*/("""background-color: #dddddd;
-"""),format.raw/*18.1*/("""}"""),format.raw/*18.2*/("""
-"""),format.raw/*19.1*/(""".header"""),format.raw/*19.8*/("""{"""),format.raw/*19.9*/("""
-"""),format.raw/*20.1*/("""background-color: #171616;
-    color: bisque;
-    margin: -15px;
-    margin-bottom: 50px;
-    padding: 6px;
-"""),format.raw/*25.1*/("""}"""),format.raw/*25.2*/("""
-"""),format.raw/*26.1*/("""</style>
+"""),format.raw/*18.1*/("""tr:nth-child(even) """),format.raw/*18.20*/("""{"""),format.raw/*18.21*/("""
+	"""),format.raw/*19.2*/("""background-color: #dddddd;
+"""),format.raw/*20.1*/("""}"""),format.raw/*20.2*/("""
+
+"""),format.raw/*22.1*/(""".header """),format.raw/*22.9*/("""{"""),format.raw/*22.10*/("""
+	"""),format.raw/*23.2*/("""background-color: #171616;
+	color: bisque;
+	margin: -15px;
+	margin-bottom: 50px;
+	padding: 6px;
+"""),format.raw/*28.1*/("""}"""),format.raw/*28.2*/("""
+"""),format.raw/*29.1*/("""</style>
 
 <body>
 	<center class="header">
-			<div>
-				<h1 class="center">Welcome to Gitterific</h1>
-			</div>
+		<div>
+			<h1 class="center">Welcome to Gitterific</h1>
+		</div>
 		<form method="GET" action="fetch">
-			<input name="query" placeholder="enter search term(s)"> </input> 
-			<input type="submit" value="Go">
+			<input name="query" placeholder="enter search term(s)"> </input> <input
+				type="submit" value="Go">
 		</form>
 	</center>
 
@@ -73,19 +76,26 @@ table """),format.raw/*4.7*/("""{"""),format.raw/*4.8*/("""
 				<th>Users</th>
 				<th>Repository Name</th>
 				<th>Issues</th>
-				<th>Topics</th>
+				<th>Visibility</th>
 				<th>Commits</th>
 			</tr>
-			"""),_display_(/*48.5*/for(d <- data) yield /*48.19*/{_display_(Seq[Any](format.raw/*48.20*/("""
-			"""),format.raw/*49.4*/("""<tr>
-				<td><a href="users/"""),_display_(/*50.25*/d/*50.26*/.login),format.raw/*50.32*/("""" target="_blank">"""),_display_(/*50.51*/d/*50.52*/.login),format.raw/*50.58*/("""</a></td>
-				<td>"""),_display_(/*51.10*/d/*51.11*/.name),format.raw/*51.16*/("""</td>
-				<td>"""),_display_(/*52.10*/d/*52.11*/.issues_url),format.raw/*52.22*/("""</td>
-				<td>Topics</td>
-				<td>Link</td>
+			"""),_display_(/*51.5*/for(d <- data) yield /*51.19*/{_display_(Seq[Any](format.raw/*51.20*/(""" 
+			"""),_display_(/*52.5*/if(count%10 != 0)/*52.22*/{_display_(Seq[Any](format.raw/*52.23*/("""
+			"""),format.raw/*53.4*/("""<tr>
+				<td><a href="users/"""),_display_(/*54.25*/d/*54.26*/.login),format.raw/*54.32*/("""" target="_blank">"""),_display_(/*54.51*/d/*54.52*/.login),format.raw/*54.58*/("""</a></td>
+				<td>"""),_display_(/*55.10*/d/*55.11*/.name),format.raw/*55.16*/("""</td>
+				<td>"""),_display_(/*56.10*/d/*56.11*/.issues_url),format.raw/*56.22*/("""</td>
+				<td style="width: 8%">"""),_display_(/*57.28*/d/*57.29*/.visibility),format.raw/*57.40*/("""</td>
+				<td>"""),_display_(/*58.10*/d/*58.11*/.commits_url),format.raw/*58.23*/("""</td>
 			</tr>
-			""")))}),format.raw/*56.5*/("""
-		"""),format.raw/*57.3*/("""</table>
+			""")))}/*60.5*/else/*60.9*/{_display_(Seq[Any](format.raw/*60.10*/("""
+			"""),format.raw/*61.4*/("""<tr>
+				<td style="height: 40; background-color: white; border: white"></td>
+			</tr>
+			""")))}),format.raw/*64.5*/("""
+			"""),_display_(/*65.5*/{count = count+1}),format.raw/*65.22*/(""" 
+			""")))}),format.raw/*66.5*/("""
+		"""),format.raw/*67.3*/("""</table>
 	</center>
 </body>
 </html>"""))
@@ -105,9 +115,9 @@ table """),format.raw/*4.7*/("""{"""),format.raw/*4.8*/("""
               /*
                   -- GENERATED --
                   SOURCE: app/views/index.scala.html
-                  HASH: 226918d1e004419d5f660240b9880947ca5f101e
-                  MATRIX: 929->1|1060->37|1088->39|1137->62|1164->63|1193->66|1296->143|1323->144|1354->148|1388->155|1416->156|1446->159|1537->223|1565->224|1596->228|1643->247|1672->248|1702->251|1757->279|1785->280|1814->282|1848->289|1876->290|1905->292|2045->405|2073->406|2102->408|2575->855|2605->869|2644->870|2676->875|2733->905|2743->906|2770->912|2816->931|2826->932|2853->938|2900->958|2910->959|2936->964|2979->980|2989->981|3021->992|3112->1053|3143->1057
-                  LINES: 27->1|32->1|33->2|35->4|35->4|36->5|39->8|39->8|41->10|41->10|41->10|42->11|45->14|45->14|47->16|47->16|47->16|48->17|49->18|49->18|50->19|50->19|50->19|51->20|56->25|56->25|57->26|79->48|79->48|79->48|80->49|81->50|81->50|81->50|81->50|81->50|81->50|82->51|82->51|82->51|83->52|83->52|83->52|87->56|88->57
+                  HASH: 345358d95b998b8f43b560287d1492d115f6767b
+                  MATRIX: 929->1|1038->41|1108->37|1137->83|1186->106|1213->107|1242->110|1344->186|1371->187|1402->191|1436->198|1464->199|1494->202|1612->293|1640->294|1671->298|1718->317|1747->318|1777->321|1832->349|1860->350|1891->354|1926->362|1955->363|1985->366|2113->467|2141->468|2170->470|2644->918|2674->932|2713->933|2746->940|2772->957|2811->958|2843->963|2900->993|2910->994|2937->1000|2983->1019|2993->1020|3020->1026|3067->1046|3077->1047|3103->1052|3146->1068|3156->1069|3188->1080|3249->1114|3259->1115|3291->1126|3334->1142|3344->1143|3377->1155|3416->1176|3428->1180|3467->1181|3499->1186|3623->1280|3655->1286|3693->1303|3730->1310|3761->1314
+                  LINES: 27->1|30->2|33->1|34->3|36->5|36->5|37->6|40->9|40->9|42->11|42->11|42->11|43->12|47->16|47->16|49->18|49->18|49->18|50->19|51->20|51->20|53->22|53->22|53->22|54->23|59->28|59->28|60->29|82->51|82->51|82->51|83->52|83->52|83->52|84->53|85->54|85->54|85->54|85->54|85->54|85->54|86->55|86->55|86->55|87->56|87->56|87->56|88->57|88->57|88->57|89->58|89->58|89->58|91->60|91->60|91->60|92->61|95->64|96->65|96->65|97->66|98->67
                   -- GENERATED --
               */
           
