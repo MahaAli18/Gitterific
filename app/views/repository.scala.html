@@ -1,0 +1,72 @@
+@(data: List[model.ListRepoDetails], login: String, name: String, description: String, title: String)
+<html>
+    <style>
+            table {
+                font-family: arial, sans-serif;
+                border-collapse: collapse;
+                width: 90%;
+            }
+
+            td, th {
+                border: 1px solid #dddddd;
+                text-align: left;
+                padding: 8px;
+                overflow-wrap: anywhere;
+            }
+
+            tr:nth-child(even) {
+                background-color: #dddddd;
+            }
+
+            .header {
+                background-color: #171616;
+                color: bisque;
+                margin: -15px;
+                margin-bottom: 50px;
+                padding: 6px;
+            }
+    </style>
+
+    <body>
+        <center class="header">
+            <div>
+                <h1 class="center">Repository Name: @name</h1>
+            </div>
+            <div>
+                <h1 class="center">Owner Name: @login</h1>
+            </div>
+            <div>
+                <h1 class="center">Description: @description</h1>
+            </div>
+        </center>
+
+        <div>
+            <a href="@routes.Application.fetchIssues()">Issues</a>
+        </div>
+
+        <div>
+            <a href="@routes.Application.fetchCommits()">Commits</a>
+        </div>
+
+        <div>
+            <a href="@routes.Application.fetchPulls()">Pulls</a>
+        </div>
+        
+        <div>
+            <a href="@routes.Application.back()">Back</a>
+        </div>
+
+        <center>
+            <table>
+                <tr>
+                    <th>@title</th>
+                </tr>
+                @for(d <- data) {
+                    <tr>
+                        <td>@d.title</td>
+                    </tr>
+                }
+            </table>
+        </center>
+    </body>
+</html>
