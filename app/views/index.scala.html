@@ -45,14 +45,16 @@ background-color: #171616;
 				<th>Issues</th>
 				<th>Visibility</th>
 				<th>Commits</th>
+				<th>Pulls</th>
 			</tr>
 			@for(d <- data){
 			<tr>
 				<td><a href="users/@d.login" target="_blank">@d.login</a></td>
-				<td>@d.name</td>
+				<td><a href="@routes.Application.navToRepositoryDetails(d.issues_url, d.commits_url, d.pulls_url, d.login, d.name, d.description)">@d.name</a></td>
 				<td>@d.issues_url</td>
 				<td style="width:8%">@d.visibility</td>
 				<td>@d.commits_url</td>
+				<td>@d.pulls_url</td>
 			</tr>
 			}
 		</table>
