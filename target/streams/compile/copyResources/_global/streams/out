@@ -1,4 +1,4 @@
 [0m[[0m[0mdebug[0m] [0m[0mCopy resource mappings: [0m
-[0m[[0m[0mdebug[0m] [0m[0m	(C:\Users\maha_\OneDrive\Documents\Fall 2021 Course content\SOEN 6441\SOEN-Gitterific\conf\application.conf,C:\Users\maha_\OneDrive\Documents\Fall 2021 Course content\SOEN 6441\SOEN-Gitterific\target\scala-2.13\classes\application.conf)[0m
-[0m[[0m[0mdebug[0m] [0m[0m	(C:\Users\maha_\OneDrive\Documents\Fall 2021 Course content\SOEN 6441\SOEN-Gitterific\conf\logback.xml,C:\Users\maha_\OneDrive\Documents\Fall 2021 Course content\SOEN 6441\SOEN-Gitterific\target\scala-2.13\classes\logback.xml)[0m
-[0m[[0m[0mdebug[0m] [0m[0m	(C:\Users\maha_\OneDrive\Documents\Fall 2021 Course content\SOEN 6441\SOEN-Gitterific\conf\routes,C:\Users\maha_\OneDrive\Documents\Fall 2021 Course content\SOEN 6441\SOEN-Gitterific\target\scala-2.13\classes\routes)[0m
+[0m[[0m[0mdebug[0m] [0m[0m	(C:\App project\Gitterific\conf\application.conf,C:\App project\Gitterific\target\scala-2.13\classes\application.conf)[0m
+[0m[[0m[0mdebug[0m] [0m[0m	(C:\App project\Gitterific\conf\logback.xml,C:\App project\Gitterific\target\scala-2.13\classes\logback.xml)[0m
+[0m[[0m[0mdebug[0m] [0m[0m	(C:\App project\Gitterific\conf\routes,C:\App project\Gitterific\target\scala-2.13\classes\routes)[0m

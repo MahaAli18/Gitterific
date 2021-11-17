@@ -27,58 +27,56 @@ object user_repos extends _root_.play.twirl.api.BaseScalaTemplate[play.twirl.api
   def apply/*1.2*/(data: List[model.UserRepos]):play.twirl.api.HtmlFormat.Appendable = {
     _display_ {
       {
-/*2.2*/import java.math.BigInteger; var count=0
+/*1.33*/import java.math.BigInteger; var count=0
 
 
-Seq[Any](format.raw/*1.31*/("""
-"""),format.raw/*3.1*/("""<html>
+Seq[Any](format.raw/*1.31*/(""" """),format.raw/*2.1*/("""<html>
 <style>
-table """),format.raw/*5.7*/("""{"""),format.raw/*5.8*/("""
-	"""),format.raw/*6.2*/("""font-family: arial, sans-serif;
+table """),format.raw/*4.7*/("""{"""),format.raw/*4.8*/("""
+	"""),format.raw/*5.2*/("""font-family: arial, sans-serif;
 	border-collapse: collapse;
 	width: 100%;
-    margin-top:50px;
-"""),format.raw/*10.1*/("""}"""),format.raw/*10.2*/("""
+	margin-top: 50px;
+"""),format.raw/*9.1*/("""}"""),format.raw/*9.2*/("""
 
-"""),format.raw/*12.1*/("""td, th """),format.raw/*12.8*/("""{"""),format.raw/*12.9*/("""
-	"""),format.raw/*13.2*/("""border: 2px solid #e0b0918f;
+"""),format.raw/*11.1*/("""td, th """),format.raw/*11.8*/("""{"""),format.raw/*11.9*/("""
+	"""),format.raw/*12.2*/("""border: 2px solid #e0b0918f;
 	text-align: left;
 	padding: 8px;
-"""),format.raw/*16.1*/("""}"""),format.raw/*16.2*/("""
+"""),format.raw/*15.1*/("""}"""),format.raw/*15.2*/("""
 
-"""),format.raw/*18.1*/("""tr:nth-child(even) """),format.raw/*18.20*/("""{"""),format.raw/*18.21*/("""
-	"""),format.raw/*19.2*/("""background-color: #dddddd;
-"""),format.raw/*20.1*/("""}"""),format.raw/*20.2*/("""
+"""),format.raw/*17.1*/("""tr:nth-child(even) """),format.raw/*17.20*/("""{"""),format.raw/*17.21*/("""
+	"""),format.raw/*18.2*/("""background-color: #dddddd;
+"""),format.raw/*19.1*/("""}"""),format.raw/*19.2*/("""
 
-"""),format.raw/*22.1*/("""h2"""),format.raw/*22.3*/("""{"""),format.raw/*22.4*/("""
-   """),format.raw/*23.4*/("""display:flex;
-   justify-content:center;
-   color: burlywood;
-   background-color: black;
-   margin-bottom:50px;
-   margin: -15px;
-   padding: 16px;
-   font-size: 35px;
-   
-"""),format.raw/*32.1*/("""}"""),format.raw/*32.2*/("""
-"""),format.raw/*33.1*/("""</style>
+"""),format.raw/*21.1*/("""h2 """),format.raw/*21.4*/("""{"""),format.raw/*21.5*/("""
+	"""),format.raw/*22.2*/("""display: flex;
+	justify-content: center;
+	color: burlywood;
+	background-color: black;
+	margin-bottom: 50px;
+	margin: -15px;
+	padding: 16px;
+	font-size: 35px;
+"""),format.raw/*30.1*/("""}"""),format.raw/*30.2*/("""
+"""),format.raw/*31.1*/("""</style>
 
 <body>
 	<h2>User Repositories</h2>
 
-		<table style="width:100%">
+	<table style="width: 100%">
 		<tr>
-		     <th>Repository Name</th>
-		   <th>Repository Lists</th>
+			<th>Repository Name</th>
+			<th>Repository Lists</th>
 		</tr>
-			"""),_display_(/*43.5*/for(d <- data) yield /*43.19*/{_display_(Seq[Any](format.raw/*43.20*/("""
-			"""),format.raw/*44.4*/("""<tr>
-			    <td>"""),_display_(/*45.13*/d/*45.14*/.name),format.raw/*45.19*/("""</td>
-				<td>"""),_display_(/*46.10*/d/*46.11*/.repos_url),format.raw/*46.21*/("""</td>
-				
-			</tr>
-			""")))}),format.raw/*49.5*/("""
-		"""),format.raw/*50.3*/("""</table>
+		"""),_display_(/*41.4*/for(d <- data) yield /*41.18*/{_display_(Seq[Any](format.raw/*41.19*/("""
+		"""),format.raw/*42.3*/("""<tr>
+			<td><a href=""""),_display_(/*43.18*/routes/*43.24*/.Application.navToRepositoryDetails(d.issues_url, d.commits_url, d.pulls_url, d.login, d.name, d.description)),format.raw/*43.133*/("""">"""),_display_(/*43.136*/d/*43.137*/.name),format.raw/*43.142*/("""</a></td>
+			<td>"""),_display_(/*44.9*/d/*44.10*/.repos_url),format.raw/*44.20*/("""</td>
+
+		</tr>
+		""")))}),format.raw/*47.4*/("""
+	"""),format.raw/*48.2*/("""</table>
 </body>
 </html>"""))
       }
@@ -97,9 +95,9 @@ table """),format.raw/*5.7*/("""{"""),format.raw/*5.8*/("""
               /*
                   -- GENERATED --
                   SOURCE: app/views/user_repos.scala.html
-                  HASH: 5dfd9114c489174a07b1e22eab42986841642f7c
-                  MATRIX: 927->1|1029->33|1099->30|1127->75|1176->98|1203->99|1232->102|1358->201|1386->202|1417->206|1451->213|1479->214|1509->217|1602->283|1630->284|1661->288|1708->307|1737->308|1767->311|1822->339|1850->340|1881->344|1910->346|1938->347|1970->352|2179->534|2207->535|2236->537|2429->704|2459->718|2498->719|2530->724|2575->742|2585->743|2611->748|2654->764|2664->765|2695->775|2752->802|2783->806
-                  LINES: 27->1|30->2|33->1|34->3|36->5|36->5|37->6|41->10|41->10|43->12|43->12|43->12|44->13|47->16|47->16|49->18|49->18|49->18|50->19|51->20|51->20|53->22|53->22|53->22|54->23|63->32|63->32|64->33|74->43|74->43|74->43|75->44|76->45|76->45|76->45|77->46|77->46|77->46|80->49|81->50
+                  HASH: 60e67a8cf83bc8a1efcf532c0071a98f2bbdf1fb
+                  MATRIX: 927->1|1030->32|1100->30|1127->74|1176->97|1203->98|1232->101|1355->198|1382->199|1413->203|1447->210|1475->211|1505->214|1598->280|1626->281|1657->285|1704->304|1733->305|1763->308|1818->336|1846->337|1877->341|1907->344|1935->345|1965->348|2158->514|2186->515|2215->517|2401->677|2431->691|2470->692|2501->696|2551->719|2566->725|2697->834|2728->837|2739->838|2766->843|2811->862|2821->863|2852->873|2903->894|2933->897
+                  LINES: 27->1|30->1|33->1|33->2|35->4|35->4|36->5|40->9|40->9|42->11|42->11|42->11|43->12|46->15|46->15|48->17|48->17|48->17|49->18|50->19|50->19|52->21|52->21|52->21|53->22|61->30|61->30|62->31|72->41|72->41|72->41|73->42|74->43|74->43|74->43|74->43|74->43|74->43|75->44|75->44|75->44|78->47|79->48
                   -- GENERATED --
               */
           
