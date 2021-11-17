@@ -27,35 +27,36 @@ object index extends _root_.play.twirl.api.BaseScalaTemplate[play.twirl.api.Html
   def apply/*1.2*/(data: List[model.ListRepositories]):play.twirl.api.HtmlFormat.Appendable = {
     _display_ {
       {
+/*2.2*/import java.math.BigInteger; var count=0
 
 
 Seq[Any](format.raw/*1.38*/("""
-"""),format.raw/*2.1*/("""<html>
+"""),format.raw/*3.1*/("""<html>
 <style>
-table """),format.raw/*4.7*/("""{"""),format.raw/*4.8*/("""
-	"""),format.raw/*5.2*/("""font-family: arial, sans-serif;
+table """),format.raw/*5.7*/("""{"""),format.raw/*5.8*/("""
+	"""),format.raw/*6.2*/("""font-family: arial, sans-serif;
 	border-collapse: collapse;
 	width: 90%;
-"""),format.raw/*8.1*/("""}"""),format.raw/*8.2*/("""
+"""),format.raw/*9.1*/("""}"""),format.raw/*9.2*/("""
 
-"""),format.raw/*10.1*/("""td, th """),format.raw/*10.8*/("""{"""),format.raw/*10.9*/("""
-	"""),format.raw/*11.2*/("""border: 1px solid #dddddd;
+"""),format.raw/*11.1*/("""td, th """),format.raw/*11.8*/("""{"""),format.raw/*11.9*/("""
+	"""),format.raw/*12.2*/("""border: 1px solid #dddddd;
 	text-align: left;
 	padding: 8px;
 	overflow-wrap: anywhere;
-"""),format.raw/*15.1*/("""}"""),format.raw/*15.2*/("""
+"""),format.raw/*16.1*/("""}"""),format.raw/*16.2*/("""
 
-"""),format.raw/*17.1*/("""tr:nth-child(even) """),format.raw/*17.20*/("""{"""),format.raw/*17.21*/("""
-	"""),format.raw/*18.2*/("""background-color: #dddddd;
-"""),format.raw/*19.1*/("""}"""),format.raw/*19.2*/("""
-"""),format.raw/*20.1*/(""".header"""),format.raw/*20.8*/("""{"""),format.raw/*20.9*/("""
-"""),format.raw/*21.1*/("""background-color: #171616;
+"""),format.raw/*18.1*/("""tr:nth-child(even) """),format.raw/*18.20*/("""{"""),format.raw/*18.21*/("""
+	"""),format.raw/*19.2*/("""background-color: #dddddd;
+"""),format.raw/*20.1*/("""}"""),format.raw/*20.2*/("""
+"""),format.raw/*21.1*/(""".header"""),format.raw/*21.8*/("""{"""),format.raw/*21.9*/("""
+"""),format.raw/*22.1*/("""background-color: #171616;
     color: bisque;
     margin: -15px;
     margin-bottom: 50px;
     padding: 6px;
-"""),format.raw/*26.1*/("""}"""),format.raw/*26.2*/("""
-"""),format.raw/*27.1*/("""</style>
+"""),format.raw/*27.1*/("""}"""),format.raw/*27.2*/("""
+"""),format.raw/*28.1*/("""</style>
 
 <body>
 	<center class="header">
@@ -77,16 +78,24 @@ table """),format.raw/*4.7*/("""{"""),format.raw/*4.8*/("""
 				<th>Visibility</th>
 				<th>Commits</th>
 			</tr>
-			"""),_display_(/*49.5*/for(d <- data) yield /*49.19*/{_display_(Seq[Any](format.raw/*49.20*/("""
-			"""),format.raw/*50.4*/("""<tr>
-				<td><a href="users/"""),_display_(/*51.25*/d/*51.26*/.login),format.raw/*51.32*/("""" target="_blank">"""),_display_(/*51.51*/d/*51.52*/.login),format.raw/*51.58*/("""</a></td>
-				<td>"""),_display_(/*52.10*/d/*52.11*/.name),format.raw/*52.16*/("""</td>
-				<td>"""),_display_(/*53.10*/d/*53.11*/.issues_url),format.raw/*53.22*/("""</td>
-				<td style="width:8%">"""),_display_(/*54.27*/d/*54.28*/.visibility),format.raw/*54.39*/("""</td>
-				<td>"""),_display_(/*55.10*/d/*55.11*/.commits_url),format.raw/*55.23*/("""</td>
+			"""),_display_(/*50.5*/for(d <- data) yield /*50.19*/{_display_(Seq[Any](format.raw/*50.20*/("""
+			
+			"""),_display_(/*52.5*/if(count%10 != 0)/*52.22*/{_display_(Seq[Any](format.raw/*52.23*/("""
+			"""),format.raw/*53.4*/("""<tr>
+				<td><a href="users/"""),_display_(/*54.25*/d/*54.26*/.login),format.raw/*54.32*/("""" target="_blank">"""),_display_(/*54.51*/d/*54.52*/.login),format.raw/*54.58*/("""</a></td>
+				<td>"""),_display_(/*55.10*/d/*55.11*/.name),format.raw/*55.16*/("""</td>
+				<td>"""),_display_(/*56.10*/d/*56.11*/.issues_url),format.raw/*56.22*/("""</td>
+				<td style="width:8%">"""),_display_(/*57.27*/d/*57.28*/.visibility),format.raw/*57.39*/("""</td>
+				<td>"""),_display_(/*58.10*/d/*58.11*/.commits_url),format.raw/*58.23*/("""</td>
 			</tr>
-			""")))}),format.raw/*57.5*/("""
-		"""),format.raw/*58.3*/("""</table>
+			""")))}/*60.5*/else/*60.9*/{_display_(Seq[Any](format.raw/*60.10*/("""
+			  """),format.raw/*61.6*/("""<tr>
+			    <td style="height:40; background-color:white; border:white"></td>
+			  </tr>
+			""")))}),format.raw/*64.5*/("""
+			"""),_display_(/*65.5*/{count = count+1}),format.raw/*65.22*/("""
+			""")))}),format.raw/*66.5*/("""
+		"""),format.raw/*67.3*/("""</table>
 	</center>
 </body>
 </html>"""))
@@ -106,9 +115,9 @@ table """),format.raw/*4.7*/("""{"""),format.raw/*4.8*/("""
               /*
                   -- GENERATED --
                   SOURCE: app/views/index.scala.html
-                  HASH: 283d1b155596d44d6be79b3ed2fd920ea4ce0697
-                  MATRIX: 929->1|1060->37|1088->39|1137->62|1164->63|1193->66|1295->142|1322->143|1353->147|1387->154|1415->155|1445->158|1563->249|1591->250|1622->254|1669->273|1698->274|1728->277|1783->305|1811->306|1840->308|1874->315|1902->316|1931->318|2071->431|2099->432|2128->434|2605->885|2635->899|2674->900|2706->905|2763->935|2773->936|2800->942|2846->961|2856->962|2883->968|2930->988|2940->989|2966->994|3009->1010|3019->1011|3051->1022|3111->1055|3121->1056|3153->1067|3196->1083|3206->1084|3239->1096|3290->1117|3321->1121
-                  LINES: 27->1|32->1|33->2|35->4|35->4|36->5|39->8|39->8|41->10|41->10|41->10|42->11|46->15|46->15|48->17|48->17|48->17|49->18|50->19|50->19|51->20|51->20|51->20|52->21|57->26|57->26|58->27|80->49|80->49|80->49|81->50|82->51|82->51|82->51|82->51|82->51|82->51|83->52|83->52|83->52|84->53|84->53|84->53|85->54|85->54|85->54|86->55|86->55|86->55|88->57|89->58
+                  HASH: 3dd7c667d42e15d6ed8cd9e273c78be43433a935
+                  MATRIX: 929->1|1038->40|1108->37|1136->82|1185->105|1212->106|1241->109|1343->185|1370->186|1401->190|1435->197|1463->198|1493->201|1611->292|1639->293|1670->297|1717->316|1746->317|1776->320|1831->348|1859->349|1888->351|1922->358|1950->359|1979->361|2119->474|2147->475|2176->477|2653->928|2683->942|2722->943|2759->954|2785->971|2824->972|2856->977|2913->1007|2923->1008|2950->1014|2996->1033|3006->1034|3033->1040|3080->1060|3090->1061|3116->1066|3159->1082|3169->1083|3201->1094|3261->1127|3271->1128|3303->1139|3346->1155|3356->1156|3389->1168|3428->1189|3440->1193|3479->1194|3513->1201|3639->1297|3671->1303|3709->1320|3745->1326|3776->1330
+                  LINES: 27->1|30->2|33->1|34->3|36->5|36->5|37->6|40->9|40->9|42->11|42->11|42->11|43->12|47->16|47->16|49->18|49->18|49->18|50->19|51->20|51->20|52->21|52->21|52->21|53->22|58->27|58->27|59->28|81->50|81->50|81->50|83->52|83->52|83->52|84->53|85->54|85->54|85->54|85->54|85->54|85->54|86->55|86->55|86->55|87->56|87->56|87->56|88->57|88->57|88->57|89->58|89->58|89->58|91->60|91->60|91->60|92->61|95->64|96->65|96->65|97->66|98->67
                   -- GENERATED --
               */
           

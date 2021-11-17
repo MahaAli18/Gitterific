@@ -10,7 +10,7 @@ import _root_.play.libs.F
 // @LINE:7
 package controllers.javascript {
 
-  // @LINE:12
+  // @LINE:13
   class ReverseAssets(_prefix: => String) {
 
     def _defaultPrefix: String = {
@@ -18,7 +18,7 @@ package controllers.javascript {
     }
 
   
-    // @LINE:12
+    // @LINE:13
     def versioned: JavaScriptReverseRoute = JavaScriptReverseRoute(
       "controllers.Assets.versioned",
       """
@@ -38,12 +38,32 @@ package controllers.javascript {
     }
 
   
+    // @LINE:10
+    def fetchUsersRepos: JavaScriptReverseRoute = JavaScriptReverseRoute(
+      "controllers.Application.fetchUsersRepos",
+      """
+        function(user0) {
+          return _wA({method:"GET", url:"""" + _prefix + { _defaultPrefix } + """" + "users/" + encodeURIComponent((""" + implicitly[play.api.mvc.PathBindable[String]].javascriptUnbind + """)("user", user0)) + "/repos"})
+        }
+      """
+    )
+  
     // @LINE:8
     def fetch: JavaScriptReverseRoute = JavaScriptReverseRoute(
       "controllers.Application.fetch",
       """
         function(query0) {
           return _wA({method:"GET", url:"""" + _prefix + { _defaultPrefix } + """" + "fetch" + _qS([(""" + implicitly[play.api.mvc.QueryStringBindable[String]].javascriptUnbind + """)("query", query0)])})
+        }
+      """
+    )
+  
+    // @LINE:9
+    def fetchUsers: JavaScriptReverseRoute = JavaScriptReverseRoute(
+      "controllers.Application.fetchUsers",
+      """
+        function(user0) {
+          return _wA({method:"GET", url:"""" + _prefix + { _defaultPrefix } + """" + "users/" + encodeURIComponent((""" + implicitly[play.api.mvc.PathBindable[String]].javascriptUnbind + """)("user", user0))})
         }
       """
     )
