@@ -19,7 +19,7 @@ import static play.test.Helpers.route;
     *
     */
 
-public class HomeControllers extends WithApplication {
+public class ApplicationTest extends WithApplication {
 
    
     @Override
