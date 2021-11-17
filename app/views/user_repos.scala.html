@@ -1,0 +1,50 @@
+@(data: List[model.UserRepos]) @import java.math.BigInteger; var count=0
+<html>
+<style>
+table {
+	font-family: arial, sans-serif;
+	border-collapse: collapse;
+	width: 100%;
+	margin-top: 50px;
+}
+
+td, th {
+	border: 2px solid #e0b0918f;
+	text-align: left;
+	padding: 8px;
+}
+
+tr:nth-child(even) {
+	background-color: #dddddd;
+}
+
+h2 {
+	display: flex;
+	justify-content: center;
+	color: burlywood;
+	background-color: black;
+	margin-bottom: 50px;
+	margin: -15px;
+	padding: 16px;
+	font-size: 35px;
+}
+</style>
+
+<body>
+	<h2>User Repositories</h2>
+
+	<table style="width: 100%">
+		<tr>
+			<th>Repository Name</th>
+			<th>Repository Lists</th>
+		</tr>
+		@for(d <- data){
+		<tr>
+			<td>@d.name</td>
+			<td>@d.repos_url</td>
+
+		</tr>
+		}
+	</table>
+</body>
+</html>
