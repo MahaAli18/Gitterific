@@ -65,7 +65,13 @@ public class Application extends Controller implements WSBodyReadables {
 	}
 	
 
-	
+	/**
+	 * @author WaleedAhmed05
+	 * @param query - topic keyword
+	 * @return list of Json data
+	 * @throws InterruptedException - If any interruption occurs
+	 * @throws ExecutionException - If any exceptions in execution
+	 */
 	public Result topics(String query) throws InterruptedException, ExecutionException{
 		List<ListTopicsRepos> topics = new ArrayList<ListTopicsRepos>();
 		TopicsRepositoryFetching topicsRepoSearch = new TopicsRepositoryFetching();

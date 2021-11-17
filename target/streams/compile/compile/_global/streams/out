@@ -1,4 +1,4 @@
-[0m[[0m[31merror[0m] [0m[0mW:\Projects\Gitterific\app\views\topics.scala.html:57:13: value topicword is not a member of model.ListTopicsRepos[0m
-[0m[[0m[31merror[0m] [0m[0m				<td><@d.topicword</td>[0m
-[0m[[0m[31merror[0m] [0m[0m				        ^[0m
+[0m[[0m[31merror[0m] [0m[0mW:\Projects\Gitterific\app\views\topics.scala.html:58:20: value topics is not a member of java.util.List[model.ListTopicsRepos][0m
+[0m[[0m[31merror[0m] [0m[0m				@for(d <- data.topics){[0m
+[0m[[0m[31merror[0m] [0m[0m				               ^[0m
 [0m[[0m[31merror[0m] [0m[0mone error found[0m

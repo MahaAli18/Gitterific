@@ -34,11 +34,7 @@ background-color: #171616;
 			<div>
 				<h1 class="center">Topics</h1>
 			</div>
-		<form method="GET" action="topics">
-			<input name="query" placeholder="enter search term(s)"> </input> 
-			<input type="submit" value="Go">
-		</form>
-		<h5><i>Temporarily added, will be removed</i></h5>
+		
 	</center>
 
 	<center>
@@ -54,7 +50,11 @@ background-color: #171616;
 				<td><a href="users/@d.login" target="_blank">@d.login</a></td>
 				<td>@d.name</td>
 				<td><a href=@d.html_url target="">@d.html_url</a>
+				
+				
+				<!--  <td><a href="topics?query=@d.topicsCounter" target="_blank">@d.topicsCounter</a></td> --!>
 				<td><a href="topics?query=@d.topicword" target="_blank">@d.topicword</a></td>
+				
 			</tr>
 			}
 		</table>
