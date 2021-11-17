@@ -1,4 +1,5 @@
-@(data: List[model.ListRepositories])
+@(data: List[model.ListRepositories]) @import java.math.BigInteger; var
+count=0
 <html>
 <style>
 table {
@@ -17,23 +18,24 @@ td, th {
 tr:nth-child(even) {
 	background-color: #dddddd;
 }
-.header{
-background-color: #171616;
-    color: bisque;
-    margin: -15px;
-    margin-bottom: 50px;
-    padding: 6px;
+
+.header {
+	background-color: #171616;
+	color: bisque;
+	margin: -15px;
+	margin-bottom: 50px;
+	padding: 6px;
 }
 </style>
 
 <body>
 	<center class="header">
-			<div>
-				<h1 class="center">Welcome to Gitterific</h1>
-			</div>
+		<div>
+			<h1 class="center">Welcome to Gitterific</h1>
+		</div>
 		<form method="GET" action="fetch">
-			<input name="query" placeholder="enter search term(s)"> </input> 
-			<input type="submit" value="Go">
+			<input name="query" placeholder="enter search term(s)"> </input> <input
+				type="submit" value="Go">
 		</form>
 	</center>
 
@@ -46,15 +48,19 @@ background-color: #171616;
 				<th>Visibility</th>
 				<th>Commits</th>
 			</tr>
-			@for(d <- data){
+			@for(d <- data){ @if(count%10 != 0){
 			<tr>
 				<td><a href="users/@d.login" target="_blank">@d.login</a></td>
 				<td>@d.name</td>
 				<td>@d.issues_url</td>
-				<td style="width:8%">@d.visibility</td>
+				<td style="width: 8%">@d.visibility</td>
 				<td>@d.commits_url</td>
 			</tr>
-			}
+			}else{
+			<tr>
+				<td style="height: 40; background-color: white; border: white"></td>
+			</tr>
+			} @{count = count+1} }
 		</table>
 	</center>
 </body>

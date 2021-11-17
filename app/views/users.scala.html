@@ -1,0 +1,84 @@
+@(data: List[model.UsersList])
+<html>
+<style>
+table {
+	font-family: arial, sans-serif;
+	border-collapse: collapse;
+	width: 100%;
+	margin-top: 50px;
+}
+
+td, th {
+	border: 2px solid #e0b0918f;
+	text-align: left;
+	padding: 8px;
+}
+
+tr:nth-child(even) {
+	background-color: #dddddd;
+}
+
+h2 {
+	display: flex;
+	justify-content: center;
+	color: burlywood;
+	background-color: black;
+	margin-bottom: 50px;
+	margin: -15px;
+	padding: 16px;
+	font-size: 35px;
+}
+</style>
+
+<body>
+	@for(d <- data){
+	<h2>@d.name Profile</h2>
+	<img src="@d.avatar_url" alt="alternatetext"
+		style="width: 56px; margin-top: -44px;"> }
+	<table style="width: 100%">
+		@for(d <- data){
+		<tr>
+			<th>Id</th>
+			<td>@d.id</td>
+		</tr>
+		<tr>
+			<th>Login</th>
+			<td>@d.login</td>
+		</tr>
+		<tr>
+			<th>Name</th>
+			<td>@d.name</td>
+		</tr>
+		<tr>
+			<th>Repository</th>
+			<td><a href="@d.login/repos">@d.repository</td>
+		</tr>
+		<tr>
+			<th>Followers</th>
+			<td>@d.followers</td>
+		</tr>
+
+		<tr>
+			<th>Following</th>
+			<td>@d.following</td>
+		</tr>
+
+
+		<tr>
+			<th>Organization</th>
+			<td>@d.organization</td>
+		</tr>
+
+		<tr>
+			<th>Subscription</th>
+			<td>@d.subscription</td>
+		</tr>
+
+		<tr>
+			<th>Public Repositories</th>
+			<td>@d.public_repos</td>
+		</tr>
+		}
+	</table>
+</body>
+</html>
