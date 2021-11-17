@@ -1,5 +1,5 @@
-@(data: List[model.ListRepositories]) @import java.math.BigInteger; var
-count=0
+@(data: List[model.ListRepositories]) 
+@import java.math.BigInteger; var count=0
 <html>
 <style>
 table {
@@ -48,7 +48,8 @@ tr:nth-child(even) {
 				<th>Visibility</th>
 				<th>Commits</th>
 			</tr>
-			@for(d <- data){ @if(count%10 != 0){
+			@for(d <- data){ 
+			@if(count%10 != 0){
 			<tr>
 				<td><a href="users/@d.login" target="_blank">@d.login</a></td>
 				<td>@d.name</td>
@@ -60,7 +61,9 @@ tr:nth-child(even) {
 			<tr>
 				<td style="height: 40; background-color: white; border: white"></td>
 			</tr>
-			} @{count = count+1} }
+			}
+			@{count = count+1} 
+			}
 		</table>
 	</center>
 </body>
