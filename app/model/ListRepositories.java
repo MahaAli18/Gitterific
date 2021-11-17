@@ -23,14 +23,15 @@ public class ListRepositories {
     	  this.commits_url = "";
     	  	  
       }
-      /**
-       * 
-       * @param login
-       * @param name
-       * @param user_url
-       * @param issues_url
-       * @param commits_url
-       */
+   /**
+    * 
+    * @param login user id
+    * @param name on profile
+    * @param user_url profile link
+    * @param issues_url issues of repos
+    * @param visibility visiblity of repos
+    * @param commits_url commits on profile
+    */
       public ListRepositories(String login,String name,String user_url, String issues_url,String visibility, String commits_url) {
     	  this.login = login;	
     	  this.name = name;
