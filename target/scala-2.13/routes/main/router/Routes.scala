@@ -13,18 +13,18 @@ import _root_.play.libs.F
 
 class Routes(
   override val errorHandler: play.api.http.HttpErrorHandler, 
-  // @LINE:7
+  // @LINE:6
   Application_0: controllers.Application,
-  // @LINE:15
+  // @LINE:14
   Assets_1: controllers.Assets,
   val prefix: String
 ) extends GeneratedRouter {
 
    @javax.inject.Inject()
    def this(errorHandler: play.api.http.HttpErrorHandler,
-    // @LINE:7
+    // @LINE:6
     Application_0: controllers.Application,
-    // @LINE:15
+    // @LINE:14
     Assets_1: controllers.Assets
   ) = this(errorHandler, Application_0, Assets_1, "/")
 
@@ -52,7 +52,7 @@ class Routes(
   }}
 
 
-  // @LINE:7
+  // @LINE:6
   private[this] lazy val controllers_Application_index0_route = Route("GET",
     PathPattern(List(StaticPart(this.prefix)))
   )
@@ -65,13 +65,12 @@ class Routes(
       Nil,
       "GET",
       this.prefix + """""",
-      """ An example controller showing a sample home page
- An example controller showing a sample home page""",
+      """ An example controller showing a sample home page""",
       Seq()
     )
   )
 
-  // @LINE:8
+  // @LINE:7
   private[this] lazy val controllers_Application_fetch1_route = Route("GET",
     PathPattern(List(StaticPart(this.prefix), StaticPart(this.defaultPrefix), StaticPart("fetch")))
   )
@@ -89,7 +88,7 @@ class Routes(
     )
   )
 
-  // @LINE:9
+  // @LINE:8
   private[this] lazy val controllers_Application_topics2_route = Route("GET",
     PathPattern(List(StaticPart(this.prefix), StaticPart(this.defaultPrefix), StaticPart("topics")))
   )
@@ -107,7 +106,7 @@ class Routes(
     )
   )
 
-  // @LINE:10
+  // @LINE:9
   private[this] lazy val controllers_Application_fetchUsers3_route = Route("GET",
     PathPattern(List(StaticPart(this.prefix), StaticPart(this.defaultPrefix), StaticPart("users/"), DynamicPart("user", """[^/]+""",true)))
   )
@@ -125,7 +124,7 @@ class Routes(
     )
   )
 
-  // @LINE:11
+  // @LINE:10
   private[this] lazy val controllers_Application_fetchUsersRepos4_route = Route("GET",
     PathPattern(List(StaticPart(this.prefix), StaticPart(this.defaultPrefix), StaticPart("users/"), DynamicPart("user", """[^/]+""",true), StaticPart("/repos")))
   )
@@ -143,7 +142,7 @@ class Routes(
     )
   )
 
-  // @LINE:15
+  // @LINE:14
   private[this] lazy val controllers_Assets_versioned5_route = Route("GET",
     PathPattern(List(StaticPart(this.prefix), StaticPart(this.defaultPrefix), StaticPart("assets/"), DynamicPart("file", """.+""",false)))
   )
@@ -164,37 +163,37 @@ class Routes(
 
   def routes: PartialFunction[RequestHeader, Handler] = {
   
-    // @LINE:7
+    // @LINE:6
     case controllers_Application_index0_route(params@_) =>
       call { 
         controllers_Application_index0_invoker.call(Application_0.index)
       }
   
-    // @LINE:8
+    // @LINE:7
     case controllers_Application_fetch1_route(params@_) =>
       call(params.fromQuery[String]("query", None)) { (query) =>
         controllers_Application_fetch1_invoker.call(Application_0.fetch(query))
       }
   
-    // @LINE:9
+    // @LINE:8
     case controllers_Application_topics2_route(params@_) =>
       call(params.fromQuery[String]("query", None)) { (query) =>
         controllers_Application_topics2_invoker.call(Application_0.topics(query))
       }
   
-    // @LINE:10
+    // @LINE:9
     case controllers_Application_fetchUsers3_route(params@_) =>
       call(params.fromPath[String]("user", None)) { (user) =>
         controllers_Application_fetchUsers3_invoker.call(Application_0.fetchUsers(user))
       }
   
-    // @LINE:11
+    // @LINE:10
     case controllers_Application_fetchUsersRepos4_route(params@_) =>
       call(params.fromPath[String]("user", None)) { (user) =>
         controllers_Application_fetchUsersRepos4_invoker.call(Application_0.fetchUsersRepos(user))
       }
   
-    // @LINE:15
+    // @LINE:14
     case controllers_Assets_versioned5_route(params@_) =>
       call(Param[String]("path", Right("/public")), params.fromPath[Asset]("file", None)) { (path, file) =>
         controllers_Assets_versioned5_invoker.call(Assets_1.versioned(path, file))

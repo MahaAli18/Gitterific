@@ -3,7 +3,6 @@
 # ~~~~
 
 # An example controller showing a sample home page
-# An example controller showing a sample home page
 GET     /                        controllers.Application.index
 GET     /fetch                   controllers.Application.fetch(query:String)
 GET     /topics                   controllers.Application.topics(query:String)

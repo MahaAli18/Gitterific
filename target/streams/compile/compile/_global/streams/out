@@ -1,10 +1,8 @@
-[0m[[0m[31merror[0m] [0m[0mW:\Projects\Gitterific\conf\routes:7:1: ambiguous reference to overloaded definition,[0m
-[0m[[0m[31merror[0m] [0m[0mboth method index in class Application of type (): play.mvc.Result[0m
-[0m[[0m[31merror[0m] [0m[0mand  method index in class Application of type (): play.mvc.Result[0m
-[0m[[0m[31merror[0m] [0m[0mmatch expected type ?[0m
-[0m[[0m[31merror[0m] [0m[0mGET     /                        controllers.Application.index[0m
-[0m[[0m[31merror[0m] [0m[0mW:\Projects\Gitterific\conf\routes:10:1: value fetchUsers is not a member of controllers.Application[0m
-[0m[[0m[31merror[0m] [0m[0mGET     /users/:user             controllers.Application.fetchUsers(user:String)[0m
-[0m[[0m[31merror[0m] [0m[0mW:\Projects\Gitterific\conf\routes:11:1: value fetchUsersRepos is not a member of controllers.Application[0m
-[0m[[0m[31merror[0m] [0m[0mGET     /users/:user/repos       controllers.Application.fetchUsersRepos(user:String)[0m
-[0m[[0m[31merror[0m] [0m[0mthree errors found[0m
+[0m[[0m[31merror[0m] [0m[0mW:\Projects\Gitterific\app\controllers\Application.java:167:1: cannot find symbol[0m
+[0m[[0m[31merror[0m] [0m[0m  symbol:   class TopicsRepositoryFetching[0m
+[0m[[0m[31merror[0m] [0m[0m  location: class controllers.Application[0m
+[0m[[0m[31merror[0m] [0m[0mTopicsRepositoryFetching[0m
+[0m[[0m[31merror[0m] [0m[0mW:\Projects\Gitterific\app\controllers\Application.java:167:1: cannot find symbol[0m
+[0m[[0m[31merror[0m] [0m[0m  symbol:   class TopicsRepositoryFetching[0m
+[0m[[0m[31merror[0m] [0m[0m  location: class controllers.Application[0m
+[0m[[0m[31merror[0m] [0m[0mTopicsRepositoryFetching[0m
