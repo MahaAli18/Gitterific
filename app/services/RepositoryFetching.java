@@ -45,7 +45,9 @@ public class RepositoryFetching {
     		String issues_url = items.get("issues_url").asText();
     		String visibility = items.get("visibility").asText();
     		String commits_url = items.get("commits_url").asText();
-    		repos.add(new ListRepositories(login,name,user_url,issues_url,visibility,commits_url));
+    		String pulls_url = items.get("pulls_url").asText();
+    		String description = items.get("description").asText();
+    		repos.add(new ListRepositories(login,name,user_url,issues_url,visibility,commits_url, pulls_url, description));
     	});
 		return repos;
     	

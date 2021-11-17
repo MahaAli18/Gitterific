@@ -13,6 +13,8 @@ public class ListRepositories {
       public String issues_url;
       public String visibility;
       public String commits_url;
+      public String pulls_url;
+  	public String description;
       
       public ListRepositories() {
     	  this.login = "";
@@ -21,7 +23,8 @@ public class ListRepositories {
     	  this.issues_url = "";
     	  this.visibility="";
     	  this.commits_url = "";
-    	  	  
+    	  this.pulls_url = "";
+  		  this.description = "";	  
       }
    /**
     * 
@@ -31,14 +34,18 @@ public class ListRepositories {
     * @param issues_url issues of repos
     * @param visibility visiblity of repos
     * @param commits_url commits on profile
+    * @param pulls_url
+	* @param description
     */
-      public ListRepositories(String login,String name,String user_url, String issues_url,String visibility, String commits_url) {
+      public ListRepositories(String login,String name,String user_url, String issues_url,String visibility, String commits_url, String pulls_url, String description) {
     	  this.login = login;	
     	  this.name = name;
     	  this.user_url = user_url;
     	  this.issues_url = issues_url; 
     	  this.visibility=visibility;
     	  this.commits_url = commits_url;  
+    	  this.pulls_url = pulls_url;
+  		  this.description = description;
       }
       public String getvisibility() {
     	  return visibility;
@@ -75,4 +82,20 @@ public class ListRepositories {
       public void setcommits_url() {
     	  this.commits_url = commits_url;
       }
+      
+      public String getPulls_url() {
+  		return pulls_url;
+  	}
+
+  	public void setPulls_url(String pulls_url) {
+  		this.pulls_url = pulls_url;
+  	}
+
+  	public String getDescription() {
+  		return description;
+  	}
+
+  	public void setDescription(String description) {
+  		this.description = description;
+  	}
 }
