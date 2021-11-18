@@ -33,7 +33,7 @@ public class RepositoryFetching {
     * @throws InterruptedException
     * @throws ExecutionException
     */
-    
+    String topicword="";
     public List<ListRepositories> getList(JsonNode data) throws InterruptedException, ExecutionException {
     	
     	List<ListRepositories> repos = new ArrayList<ListRepositories>();
@@ -44,9 +44,15 @@ public class RepositoryFetching {
     		String user_url = items.get("url").asText().replaceAll("http.*?\\s", " ");
     		String issues_url = items.get("issues_url").toString();
     		String commits_url = items.get("commits_url").toString();
-
     		String visibility = items.get("visibility").asText();
-    		repos.add(new ListRepositories(login,name,user_url,issues_url,visibility,commits_url));
+    		try {
+    			    				
+    				topicword = items.get("topics").get(0).asText(); }//try
+    			   			
+    		// topicword = items.get("topics").get(0).asText(); }
+    		catch (NullPointerException e) { topicword= null; }
+    		
+    		repos.add(new ListRepositories(login,name,user_url,issues_url,visibility,commits_url,topicword));
     	});
 		return repos;
     	

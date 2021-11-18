@@ -44,18 +44,15 @@ tr:nth-child(even) {
 			<tr>
 				<th>Users</th>
 				<th>Repository Name</th>
-				<th>Issues</th>
-				<th>Visibility</th>
-				<th>Commits</th>
+				<th>Topic</th>
 			</tr>
 			@for(d <- data){ 
 			@if(count%10 != 0){
 			<tr>
 				<td><a href="users/@d.login" target="_blank">@d.login</a></td>
 				<td>@d.name</td>
-				<td>@d.issues_url</td>
-				<td style="width: 8%">@d.visibility</td>
-				<td>@d.commits_url</td>
+				<td><a href="topics?query=@d.topicword" target="_blank">@d.topicword</a></td>
+				
 			</tr>
 			}else{
 			<tr>
