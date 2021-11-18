@@ -172,6 +172,7 @@ public class Application extends Controller implements WSBodyReadables {
 	}
 	
 	/**
+	 * @author maha_
 	 * @return user repos 
 	 * @throws InterruptedException error handling
 	 * @throws ExecutionException thrown when attempting to retrieve the result of a taskthat aborted by throwing an exception
@@ -189,7 +190,7 @@ public class Application extends Controller implements WSBodyReadables {
 	 * @throws InterruptedException thrown when a thread is waiting, sleeping, or otherwise occupied,and the thread is interrupted
 	 * @throws ExecutionException thrown when attempting to retrieve the result of a taskthat aborted by throwing an exception
 	 */
-
+    public String id, issues_url,commits_url, pulls_url;
 	public Result fetchUsersRepos(String user) throws InterruptedException, ExecutionException{
 		List<UserRepos> user_repos_fetch  = new ArrayList<UserRepos>();
 		UserReposFetch userSearch = new UserReposFetch();
