@@ -6,7 +6,7 @@ package model;
  *
  */
 public class UserRepos {
-	public String repos_url;
+	public String id;
 	public String name;
 	public String login;
 	public String issues_url;
@@ -16,20 +16,20 @@ public class UserRepos {
 
 	public UserRepos() {
 
-		this.repos_url = "";
+		this.id = "";
 		this.name = "";
 
 	}
 
-	public UserRepos(String repos_url, String name, String login, String issues_url, String commits_url,
+	public UserRepos(String id, String name, String login, String issues_url, String commits_url,
 			String pulls_url, String description) {
-		this.repos_url = repos_url;
+		this.id = id;
 		this.name = name;
 		this.login = login;
 		this.issues_url = issues_url;
 		this.commits_url = commits_url;
 		this.pulls_url = pulls_url;
-		
+		this.description=description;
 	}
 
 }

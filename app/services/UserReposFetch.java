@@ -3,6 +3,9 @@ package services;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.concurrent.ExecutionException;
+import java.util.stream.Collectors;
+import java.util.stream.StreamSupport;
+
 import com.fasterxml.jackson.databind.JsonNode;
 import model.UserRepos;
 
@@ -41,10 +44,10 @@ public class UserReposFetch {
 	public List<UserRepos> getUsersReposList(JsonNode data) throws InterruptedException, ExecutionException {
 
 		List<UserRepos> users = new ArrayList<UserRepos>();
-
+		
 		for (int i = 0; data.get(i) != null; i++) {
 			JsonNode item = data.get(i);
-			users.add(new UserRepos(item.get("owner").get("repos_url").asText(), item.get("name").asText(),
+			users.add(new UserRepos(item.get("id").asText(), item.get("name").asText(),
 					item.get("owner").get("login").asText(), item.get("issues_url").asText(),
 					item.get("commits_url").asText(), item.get("pulls_url").asText(),
 					item.get("description").asText()));
