@@ -11,6 +11,7 @@ GET     /fetchIssues             controllers.Application.fetchIssues()
 GET     /fetchCommits            controllers.Application.fetchCommits()
 GET     /fetchPulls              controllers.Application.fetchPulls()
 GET     /back              		 controllers.Application.back()
+GET     /topics                   controllers.Application.topics(query:String)
 GET     /users/:user             controllers.Application.fetchUsers(user:String)
 GET     /users/:user/repos       controllers.Application.fetchUsersRepos(user:String)
 

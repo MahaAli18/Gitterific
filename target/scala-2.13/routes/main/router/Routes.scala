@@ -15,7 +15,7 @@ class Routes(
   override val errorHandler: play.api.http.HttpErrorHandler, 
   // @LINE:7
   Application_0: controllers.Application,
-  // @LINE:18
+  // @LINE:19
   Assets_1: controllers.Assets,
   val prefix: String
 ) extends GeneratedRouter {
@@ -24,7 +24,7 @@ class Routes(
    def this(errorHandler: play.api.http.HttpErrorHandler,
     // @LINE:7
     Application_0: controllers.Application,
-    // @LINE:18
+    // @LINE:19
     Assets_1: controllers.Assets
   ) = this(errorHandler, Application_0, Assets_1, "/")
 
@@ -46,6 +46,7 @@ class Routes(
     ("""GET""", this.prefix + (if(this.prefix.endsWith("/")) "" else "/") + """fetchCommits""", """controllers.Application.fetchCommits()"""),
     ("""GET""", this.prefix + (if(this.prefix.endsWith("/")) "" else "/") + """fetchPulls""", """controllers.Application.fetchPulls()"""),
     ("""GET""", this.prefix + (if(this.prefix.endsWith("/")) "" else "/") + """back""", """controllers.Application.back()"""),
+    ("""GET""", this.prefix + (if(this.prefix.endsWith("/")) "" else "/") + """topics""", """controllers.Application.topics(query:String)"""),
     ("""GET""", this.prefix + (if(this.prefix.endsWith("/")) "" else "/") + """users/""" + "$" + """user<[^/]+>""", """controllers.Application.fetchUsers(user:String)"""),
     ("""GET""", this.prefix + (if(this.prefix.endsWith("/")) "" else "/") + """users/""" + "$" + """user<[^/]+>/repos""", """controllers.Application.fetchUsersRepos(user:String)"""),
     ("""GET""", this.prefix + (if(this.prefix.endsWith("/")) "" else "/") + """assets/""" + "$" + """file<.+>""", """controllers.Assets.versioned(path:String = "/public", file:Asset)"""),
@@ -184,10 +185,28 @@ class Routes(
   )
 
   // @LINE:14
-  private[this] lazy val controllers_Application_fetchUsers7_route = Route("GET",
+  private[this] lazy val controllers_Application_topics7_route = Route("GET",
+    PathPattern(List(StaticPart(this.prefix), StaticPart(this.defaultPrefix), StaticPart("topics")))
+  )
+  private[this] lazy val controllers_Application_topics7_invoker = createInvoker(
+    Application_0.topics(fakeValue[String]),
+    play.api.routing.HandlerDef(this.getClass.getClassLoader,
+      "router",
+      "controllers.Application",
+      "topics",
+      Seq(classOf[String]),
+      "GET",
+      this.prefix + """topics""",
+      """""",
+      Seq()
+    )
+  )
+
+  // @LINE:15
+  private[this] lazy val controllers_Application_fetchUsers8_route = Route("GET",
     PathPattern(List(StaticPart(this.prefix), StaticPart(this.defaultPrefix), StaticPart("users/"), DynamicPart("user", """[^/]+""",true)))
   )
-  private[this] lazy val controllers_Application_fetchUsers7_invoker = createInvoker(
+  private[this] lazy val controllers_Application_fetchUsers8_invoker = createInvoker(
     Application_0.fetchUsers(fakeValue[String]),
     play.api.routing.HandlerDef(this.getClass.getClassLoader,
       "router",
@@ -201,11 +220,11 @@ class Routes(
     )
   )
 
-  // @LINE:15
-  private[this] lazy val controllers_Application_fetchUsersRepos8_route = Route("GET",
+  // @LINE:16
+  private[this] lazy val controllers_Application_fetchUsersRepos9_route = Route("GET",
     PathPattern(List(StaticPart(this.prefix), StaticPart(this.defaultPrefix), StaticPart("users/"), DynamicPart("user", """[^/]+""",true), StaticPart("/repos")))
   )
-  private[this] lazy val controllers_Application_fetchUsersRepos8_invoker = createInvoker(
+  private[this] lazy val controllers_Application_fetchUsersRepos9_invoker = createInvoker(
     Application_0.fetchUsersRepos(fakeValue[String]),
     play.api.routing.HandlerDef(this.getClass.getClassLoader,
       "router",
@@ -219,11 +238,11 @@ class Routes(
     )
   )
 
-  // @LINE:18
-  private[this] lazy val controllers_Assets_versioned9_route = Route("GET",
+  // @LINE:19
+  private[this] lazy val controllers_Assets_versioned10_route = Route("GET",
     PathPattern(List(StaticPart(this.prefix), StaticPart(this.defaultPrefix), StaticPart("assets/"), DynamicPart("file", """.+""",false)))
   )
-  private[this] lazy val controllers_Assets_versioned9_invoker = createInvoker(
+  private[this] lazy val controllers_Assets_versioned10_invoker = createInvoker(
     Assets_1.versioned(fakeValue[String], fakeValue[Asset]),
     play.api.routing.HandlerDef(this.getClass.getClassLoader,
       "router",
@@ -283,21 +302,27 @@ class Routes(
       }
   
     // @LINE:14
-    case controllers_Application_fetchUsers7_route(params@_) =>
-      call(params.fromPath[String]("user", None)) { (user) =>
-        controllers_Application_fetchUsers7_invoker.call(Application_0.fetchUsers(user))
+    case controllers_Application_topics7_route(params@_) =>
+      call(params.fromQuery[String]("query", None)) { (query) =>
+        controllers_Application_topics7_invoker.call(Application_0.topics(query))
       }
   
     // @LINE:15
-    case controllers_Application_fetchUsersRepos8_route(params@_) =>
+    case controllers_Application_fetchUsers8_route(params@_) =>
       call(params.fromPath[String]("user", None)) { (user) =>
-        controllers_Application_fetchUsersRepos8_invoker.call(Application_0.fetchUsersRepos(user))
+        controllers_Application_fetchUsers8_invoker.call(Application_0.fetchUsers(user))
       }
   
-    // @LINE:18
-    case controllers_Assets_versioned9_route(params@_) =>
+    // @LINE:16
+    case controllers_Application_fetchUsersRepos9_route(params@_) =>
+      call(params.fromPath[String]("user", None)) { (user) =>
+        controllers_Application_fetchUsersRepos9_invoker.call(Application_0.fetchUsersRepos(user))
+      }
+  
+    // @LINE:19
+    case controllers_Assets_versioned10_route(params@_) =>
       call(Param[String]("path", Right("/public")), params.fromPath[Asset]("file", None)) { (path, file) =>
-        controllers_Assets_versioned9_invoker.call(Assets_1.versioned(path, file))
+        controllers_Assets_versioned10_invoker.call(Assets_1.versioned(path, file))
       }
   }
 }

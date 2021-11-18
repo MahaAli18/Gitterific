@@ -1,0 +1,63 @@
+@(data: List[model.ListTopicsRepos])
+<html>
+<style>
+table {
+	font-family: arial, sans-serif;
+	border-collapse: collapse;
+	width: 100%;
+}
+
+td, th {
+	border: 1px solid #dddddd;
+	text-align: left;
+	padding: 8px;
+}
+
+tr:nth-child(even) {
+	background-color: #dddddd;
+}
+.header{
+background-color: #171616;
+    color: bisque;
+    margin: -15px;
+    margin-bottom: 50px;
+    padding: 6px;
+    
+ 
+    
+    
+}
+</style>
+
+<body>
+	<center class="header">
+			<div>
+				<h1 class="center">Topics</h1>
+			</div>
+		
+	</center>
+
+	<center>
+		<table>
+			<tr>
+				<th>Users</th>
+				<th>Repository Name</th>
+				<th>Link</th>
+				<th>Topics</th>
+			</tr>
+			@for(d <- data){
+			<tr>
+				<td><a href="users/@d.login" target="_blank">@d.login</a></td>
+				<td>@d.name</td>
+				<td><a href=@d.html_url target="">@d.html_url</a>
+				
+				
+				<!--  <td><a href="topics?query=@d.topicsCounter" target="_blank">@d.topicsCounter</a></td> --!>
+				<td><a href="topics?query=@d.topicword" target="_blank">@d.topicword</a></td>
+				
+			</tr>
+			}
+		</table>
+	</center>
+</body>
+</html>

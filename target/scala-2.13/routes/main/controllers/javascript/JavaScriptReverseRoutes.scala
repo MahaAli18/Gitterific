@@ -10,7 +10,7 @@ import _root_.play.libs.F
 // @LINE:7
 package controllers.javascript {
 
-  // @LINE:18
+  // @LINE:19
   class ReverseAssets(_prefix: => String) {
 
     def _defaultPrefix: String = {
@@ -18,7 +18,7 @@ package controllers.javascript {
     }
 
   
-    // @LINE:18
+    // @LINE:19
     def versioned: JavaScriptReverseRoute = JavaScriptReverseRoute(
       "controllers.Assets.versioned",
       """
@@ -37,6 +37,16 @@ package controllers.javascript {
       if (_prefix.endsWith("/")) "" else "/"
     }
 
+  
+    // @LINE:14
+    def topics: JavaScriptReverseRoute = JavaScriptReverseRoute(
+      "controllers.Application.topics",
+      """
+        function(query0) {
+          return _wA({method:"GET", url:"""" + _prefix + { _defaultPrefix } + """" + "topics" + _qS([(""" + implicitly[play.api.mvc.QueryStringBindable[String]].javascriptUnbind + """)("query", query0)])})
+        }
+      """
+    )
   
     // @LINE:12
     def fetchPulls: JavaScriptReverseRoute = JavaScriptReverseRoute(
@@ -58,7 +68,7 @@ package controllers.javascript {
       """
     )
   
-    // @LINE:14
+    // @LINE:15
     def fetchUsers: JavaScriptReverseRoute = JavaScriptReverseRoute(
       "controllers.Application.fetchUsers",
       """
@@ -68,7 +78,7 @@ package controllers.javascript {
       """
     )
   
-    // @LINE:15
+    // @LINE:16
     def fetchUsersRepos: JavaScriptReverseRoute = JavaScriptReverseRoute(
       "controllers.Application.fetchUsersRepos",
       """

@@ -33,7 +33,7 @@ public class RepositoryFetching {
     * @throws InterruptedException Thrown when a thread is waiting, sleeping, or otherwise occupied
     * @throws ExecutionException Exception thrown when attempting to retrieve the result of a task that aborted by throwing an exception
     */
-    
+    String topicword="";
     public List<ListRepositories> getList(JsonNode data) throws InterruptedException, ExecutionException {
     	
     	List<ListRepositories> repos = new ArrayList<ListRepositories>();
@@ -47,7 +47,15 @@ public class RepositoryFetching {
     		String commits_url = items.get("commits_url").asText();
     		String pulls_url = items.get("pulls_url").asText();
     		String description = items.get("description").asText();
-    		repos.add(new ListRepositories(login,name,user_url,issues_url,visibility,commits_url, pulls_url, description));
+    		
+    		try {
+    			    				
+    				topicword = items.get("topics").get(0).asText(); }//try
+    			   			
+    		catch (NullPointerException e) { topicword= null; }
+    		
+    		//repos.add(new ListRepositories(login,name,user_url,issues_url,visibility,commits_url,topicword));
+    		repos.add(new ListRepositories(login,name,user_url,issues_url,visibility,commits_url, pulls_url, description,topicword));
     	});
 		return repos;
     	

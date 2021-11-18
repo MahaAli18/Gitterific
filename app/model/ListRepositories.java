@@ -14,7 +14,8 @@ public class ListRepositories {
       public String visibility;
       public String commits_url;
       public String pulls_url;
-  	public String description;
+  	  public String description;
+      public String topicword;
       
       public ListRepositories() {
     	  this.login = "";
@@ -36,8 +37,9 @@ public class ListRepositories {
     * @param commits_url commits on profile
     * @param pulls_url
 	* @param description
+    * @param topicword fetches topics
     */
-      public ListRepositories(String login,String name,String user_url, String issues_url,String visibility, String commits_url, String pulls_url, String description) {
+      public ListRepositories(String login,String name,String user_url, String issues_url,String visibility, String commits_url, String pulls_url, String description, String topicword) {
     	  this.login = login;	
     	  this.name = name;
     	  this.user_url = user_url;
@@ -46,6 +48,7 @@ public class ListRepositories {
     	  this.commits_url = commits_url;  
     	  this.pulls_url = pulls_url;
   		  this.description = description;
+    	  this.topicword=topicword;
       }
       public String getvisibility() {
     	  return visibility;

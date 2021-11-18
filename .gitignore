@@ -1,3 +1,14 @@
+<<<<<<< HEAD
+logs
+target
+/.idea
+/.idea_modules
+/.classpath
+/.project
+/.settings
+/RUNNING_PID
+/bin/
+=======
 bin/
 /db
 .eclipse
@@ -11,3 +22,4 @@ tmp/
 *.eml
 /dist/
 .cache
+>>>>>>> master
