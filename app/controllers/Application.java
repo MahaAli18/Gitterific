@@ -19,7 +19,7 @@ import views.html.*;
 public class Application extends Controller implements WSBodyReadables {
 	
 	/**
-	 * @author piedamsel46_
+	 * @author maha_
 	 * Rendering the repositories list
 	 */
 	
