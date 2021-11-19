@@ -1,7 +1,7 @@
 package model;
 
 /**
- * @author piedamsel46_
+ * @author maha_
  * Data to fetch from repository
  *
  */
