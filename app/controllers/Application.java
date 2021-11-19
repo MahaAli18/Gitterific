@@ -41,6 +41,7 @@ public class Application extends Controller implements WSBodyReadables {
 
 	@Inject 
 	WSClient ws;
+
 	List<ListRepositories> get_repos = new ArrayList<ListRepositories>();
 	List<ListTopicsRepos> topics = new ArrayList<ListTopicsRepos>();
 	
@@ -55,7 +56,7 @@ public class Application extends Controller implements WSBodyReadables {
 		get_repos = new ArrayList<ListRepositories>();
 		return ok(index.render(repos));
 	}
-
+  
 	/**
 	 * @author maha_
 	 * @param query passing query to fetch the repository

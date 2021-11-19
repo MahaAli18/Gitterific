@@ -14,6 +14,12 @@ import model.ListRepositories;
 
 public class RepositoryFetching {
     ListRepositories repository;
+	
+	static List<String> login = new ArrayList<String>();
+        static List<String> name = new ArrayList<String>();
+    	static List<String> url = new ArrayList<String>();
+    	static List<String> issues_url = new ArrayList<String>();
+    	static List<String> commits_url = new ArrayList<String>();
     
     public RepositoryFetching() {
     	this.repository = new ListRepositories();
@@ -27,7 +33,7 @@ public class RepositoryFetching {
     	
     }
    /**
-    * @author maha_
+    * @author piedamsel46_
     * @param data iterating the json data
     * @return the data fetched 
     * @throws InterruptedException Thrown when a thread is waiting, sleeping, or otherwise occupied
