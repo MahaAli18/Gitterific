@@ -8,12 +8,18 @@ import model.ListRepositories;
 
 /**
  * 
- * @author piedamsel46_
+ * @author maha_
  *
  */
 
 public class RepositoryFetching {
     ListRepositories repository;
+	
+	static List<String> login = new ArrayList<String>();
+        static List<String> name = new ArrayList<String>();
+    	static List<String> url = new ArrayList<String>();
+    	static List<String> issues_url = new ArrayList<String>();
+    	static List<String> commits_url = new ArrayList<String>();
     
     public RepositoryFetching() {
     	this.repository = new ListRepositories();
