@@ -6,6 +6,12 @@ import play.twirl.api.Content;
 import static org.junit.Assert.*;
 import javax.swing.text.AbstractDocument;
 
+/**
+ * 
+ * @author piedamsel46_
+ *
+ */
+
 public class Testing  extends WithApplication {
      @Test
     public void renderTemplate(){
