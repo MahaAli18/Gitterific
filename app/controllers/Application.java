@@ -146,6 +146,37 @@ public class Application extends Controller implements WSBodyReadables {
 		this.issuesUrl = this.commitsUrl = this.pullsUrl = this.login = this.name = this.description = "";
 		return fetch(query);
 	}
+	
+	/**
+	 * @author piedamsel46 Fetching 100 newest commits and the compile statistics
+	 */
+	
+	public void get_full_commits_data(String url) throws InterruptedException, ExecutionException {
+    	System.out.println("Inside get_full_commits_data");
+    	WSRequest req = ws.url("https://api.github.com/users/"+user).addHeader("Authorization", "token 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");
+    	req.addQueryParameter("per_page", "100");
+    	req.addQueryParameter("page", "1");
+		req.setMethod("GET");
+		CompletionStage<JsonNode> resFromRequest = req.get().thenApply(result -> result.asJson());
+		fullCommitsResult = resFromRequest.toCompletableFuture().get();
+    }
+	
+	List<CommitsResult> topTen = topCommiters.parallelStream()
+				.map(c -> new CommitsResult(c.get_user_name(), c.get_additions(), c.get_deletions()))
+				.collect(Collectors.toList());
+		Map<String, Integer> result = new LinkedHashMap<>();
+		result = topTen.parallelStream().collect(Collectors.toMap(w -> w.get_user_name(), w -> 1, Integer :: sum));
+		result = result.entrySet()
+                .stream()
+                .sorted((Map.Entry.<String, Integer>comparingByValue().reversed()))
+                .limit(10)
+                .collect(Collectors.toMap(Map.Entry::getKey, Map.Entry::getValue, (e1, e2) -> e1, LinkedHashMap::new));
+		System.out.println(result);
+		Iterator<String> iterator = result.keySet().iterator();
+		while(iterator.hasNext()){
+		  Object commitKey = iterator.next();
+		  commitKeysList.add((String)commitKey); 
+		}
 
 	/**
 	 * @return users
