@@ -153,7 +153,7 @@ public class Application extends Controller implements WSBodyReadables {
 	
 	public void get_full_commits_data(String url) throws InterruptedException, ExecutionException {
     	System.out.println("Inside get_full_commits_data");
-    	WSRequest req = ws.url("https://api.github.com/users/"+user).addHeader("Authorization", "token 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");
+    	WSRequest req = ws.url("https://api.github.com/users/"+user).addHeader("Content-Type", "application/json");
     	req.addQueryParameter("per_page", "100");
     	req.addQueryParameter("page", "1");
 		req.setMethod("GET");
