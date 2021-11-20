@@ -42,18 +42,14 @@ background-color: #171616;
 			<tr>
 				<th>Users</th>
 				<th>Repository Name</th>
-				<th>Link</th>
 				<th>Topics</th>
 			</tr>
 			@for(d <- data){
 			<tr>
 				<td><a href="users/@d.login" target="_blank">@d.login</a></td>
-				<td>@d.name</td>
-				<td><a href=@d.html_url target="">@d.html_url</a>
-				
-				
-				<!--  <td><a href="topics?query=@d.topicsCounter" target="_blank">@d.topicsCounter</a></td> --!>
+				<td><a href="@routes.Application.navToRepositoryDetails(d.issues_url, d.commits_url, d.pulls_url, d.login, d.name, d.description)">@d.name</a></td>				
 				<td><a href="topics?query=@d.topicword" target="_blank">@d.topicword</a></td>
+				
 				
 			</tr>
 			}

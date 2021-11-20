@@ -26,8 +26,13 @@ public class ListTopicsRepos {
       public String topicword; 
       /** for storing multiple topics */
       public ArrayList<String> topicsCounter; 
-//      public String issues_url;
-//      public String commits_url;
+      
+   //new part
+      
+      public String issues_url;
+      public String commits_url;
+      public String pulls_url;
+      public String description;
  
       /**
        * ListTopicsRepos() for passing login, name, user_url, html_url
@@ -42,8 +47,10 @@ public class ListTopicsRepos {
     	  this.topicword="";
     //	  this.topicsCounter=;
     	  
-//    	  this.issues_url = "";
-//    	  this.commits_url = "";
+    	  this.issues_url = "";
+    	  this.commits_url = "";
+    	  this.pulls_url="";
+    	  this.description="";
     	  	  
       }
       /**
@@ -55,13 +62,18 @@ public class ListTopicsRepos {
        * @param topicword = For Single topic
        * @param topicsCounter = For Multiple topics
        */
-      public ListTopicsRepos(String login,String name,String user_url, String html_url, String topicword, ArrayList<String> topicsCounter) {
+      public ListTopicsRepos(String login,String name,String user_url, String html_url, String topicword, ArrayList<String> topicsCounter, String issues_url, String commits_url, String pulls_url, String description ) {
     	  this.login = login;	
     	  this.name = name;
     	  this.user_url = user_url;
     	  this.html_url=html_url;
     	  this.topicword=topicword;
     	  this.topicsCounter=topicsCounter;
+    	  
+    	  this.issues_url = issues_url;
+    	  this.commits_url = commits_url;
+    	  this.pulls_url=pulls_url;
+    	  this.description=description;
       }
       
       

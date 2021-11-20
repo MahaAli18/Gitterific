@@ -91,9 +91,11 @@ public class TopicsRepositoryFetching {
     		String topicword = items.get("topics").get(0).asText();
     
     		
-    	//	String issues_url = items.get("issues_url").toString();
-    	//	String commits_url = items.get("commits_url").toString();
-    		repos.add(new ListTopicsRepos(login,name,user_url,html_url,topicword,topicsCounter));
+    		String issues_url = items.get("issues_url").asText();
+    		String commits_url = items.get("commits_url").asText();
+    		String pulls_url = items.get("pulls_url").asText();
+    		String description = items.get("description").asText();
+    		repos.add(new ListTopicsRepos(login,name,user_url,html_url,topicword,topicsCounter,issues_url,commits_url,pulls_url,description));
     	});
 		return repos;
     	
