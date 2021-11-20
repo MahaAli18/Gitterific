@@ -55,5 +55,29 @@ public class Application extends Controller implements WSBodyReadables {
 		
 		return ok(index.render(repos));
 	}
+	/**
+	 * Fetch the issues from github rest api asynchronously by calling
+	 * {@link #queryApi(Query query) querApi} on a different thread using
+	 * <code>CompletableFuture.supplyAsync</code> method and then redirects the
+	 * fetched results 
+	 * <code>CompletableFuture.thenApply </code>
+	 * 
+	 * @return CompletableFuture of type Result
+	 * @author kavleen kour
+	 *
+	 */
+	public Result fetchIssues1() throws InterruptedException, ExecutionException {
+			List<ListRepoDetails> issues = new ArrayList<ListRepoDetails>();
+			IssueFetching issueService = new IssueFetching();
+			System.out.println("URL IS = " + issuesUrl.replace("{/number}", ""));
+			WSRequest request = ws.url(issuesUrl.replace("{/number}", "")).addHeader("Content-Type", "application/json")
+					.addQueryParameter("sort", "updated").addQueryParameter("order", "desc")
+					.addQueryParameter("per_page", "20").addQueryParameter("page", "1");
+
+			CompletionStage<JsonNode> jsonPromise = request.get().thenApply(x -> x.getBody(json()));
+			issues = issueService.getIssues(jsonPromise.toCompletableFuture().get());
+			return ok(repository.render(issues, login, name, description, "Issues"));
+		}
+
 	
 }
