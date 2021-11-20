@@ -1,5 +1,7 @@
 package model;
 
+import com.fasterxml.jackson.databind.JsonNode;
+
 /**
  * @author maha_
  * Data to fetch from repository
@@ -39,7 +41,7 @@ public class ListRepositories {
 	* @param description
     * @param topicword fetches topics
     */
-      public ListRepositories(String login,String name,String user_url, String issues_url,String visibility, String commits_url, String pulls_url, String description, String topicword) {
+      public ListRepositories(String login,String name,String user_url, String issues_url,String visibility, String commits_url, String pulls_url, String description, JsonNode topicword) {
     	  this.login = login;	
     	  this.name = name;
     	  this.user_url = user_url;
@@ -48,7 +50,12 @@ public class ListRepositories {
     	  this.commits_url = commits_url;  
     	  this.pulls_url = pulls_url;
   		  this.description = description;
-    	  this.topicword=topicword;
+    	  try {
+			this.topicword=topicword.get(0).asText();
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+		    
+		}
       }
       public String getvisibility() {
     	  return visibility;

@@ -1,7 +1,7 @@
 package controllers;
 
 import javax.inject.Inject;
-
+import java.util.Collections;
 import com.fasterxml.jackson.databind.JsonNode;
 import model.ListRepositories;
 import model.ListTopicsRepos;
@@ -38,10 +38,10 @@ public class Application extends Controller implements WSBodyReadables {
 	 * @author maha_
 	 * Rendering the repositories list
 	 */
-
+    
 	@Inject 
 	WSClient ws;
-
+    int count=0;
 	List<ListRepositories> get_repos = new ArrayList<ListRepositories>();
 	List<ListTopicsRepos> topics = new ArrayList<ListTopicsRepos>();
 	
@@ -66,7 +66,7 @@ public class Application extends Controller implements WSBodyReadables {
 	 */
 
 	public Result fetch(String query) throws InterruptedException, ExecutionException{
-
+	
 		RepositoryFetching repoSearch = new RepositoryFetching();
 		WSRequest request = ws.url("https://api.github.com/search/repositories")
 				.addHeader("Content-Type", "application/json")
@@ -82,9 +82,18 @@ public class Application extends Controller implements WSBodyReadables {
 			get_repos = repoSearch.getList(jsonPromise.toCompletableFuture().get());
 		}
 		else {
+			Collections.reverse(get_repos);
 			get_repos.addAll(repoSearch.getList(jsonPromise.toCompletableFuture().get()));
+			Collections.reverse(get_repos);
 		}
-
+	
+        
+    	while (get_repos.size()>100) { // While we still haven't removed 5 entries OR second list size
+    		   get_repos.remove(get_repos.size() - 1); // Remove the last entry of the list
+    		    // Increases 'removed' count
+    		   
+    		 }
+        
 		this.query = query;
 		return ok(index.render(get_repos));
 	}
