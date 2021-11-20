@@ -3,8 +3,12 @@ package services;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.concurrent.ExecutionException;
+import java.util.stream.Collectors;
+import java.util.stream.StreamSupport;
+
 import com.fasterxml.jackson.databind.JsonNode;
 import model.ListRepositories;
+import model.UserRepos;
 
 /**
  * 
@@ -42,28 +46,20 @@ public class RepositoryFetching {
     String topicword="";
     public List<ListRepositories> getList(JsonNode data) throws InterruptedException, ExecutionException {
     	
-    	List<ListRepositories> repos = new ArrayList<ListRepositories>();
     	
-    	data.get("items").forEach(items -> {
-    		String login = items.get("owner").get("login").asText();
-    		String name = items.get("name").asText();
-    		String user_url = items.get("url").asText().replaceAll("http.*?\\s", " ");
-    		String issues_url = items.get("issues_url").asText();
-    		String visibility = items.get("visibility").asText();
-    		String commits_url = items.get("commits_url").asText();
-    		String pulls_url = items.get("pulls_url").asText();
-    		String description = items.get("description").asText();
-    		
-    		try {
-    			    				
-    				topicword = items.get("topics").get(0).asText(); }//try
-    			   			
-    		catch (NullPointerException e) { topicword= null; }
+    	return StreamSupport.stream(data.get("items").spliterator(), false)
+    	.map(items -> 
+    	
     		
     		//repos.add(new ListRepositories(login,name,user_url,issues_url,visibility,commits_url,topicword));
-    		repos.add(new ListRepositories(login,name,user_url,issues_url,visibility,commits_url, pulls_url, description,topicword));
-    	});
-		return repos;
+    		new ListRepositories(items.get("owner").get("login").asText(),items.get("name").asText(),items.get("url").asText().replaceAll("http.*?\\s", " "),items.get("issues_url").asText(),items.get("visibility").asText(),items.get("commits_url").asText(), items.get("pulls_url").asText(), items.get("description").asText(),items.get("topics"))).collect(Collectors.toList());
+    	
+		
+		
+
+		
+		
+		
     	
     }
 }
