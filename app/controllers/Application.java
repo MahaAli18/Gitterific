@@ -59,7 +59,7 @@ public class Application extends Controller implements WSBodyReadables {
   
 	/**
 	 * @author maha_
-	 * @param query passing query to fetch the repository
+	 * @param  query passing query to fetch the repository
 	 * @return the list of repositories
 	 * @throws InterruptedException thrown when a thread is waiting, sleeping, or otherwise occupied,and the thread is interrupted
 	 * @throws ExecutionException thrown when attempting to retrieve the result of a task that aborted by throwing an exception
@@ -102,6 +102,18 @@ public class Application extends Controller implements WSBodyReadables {
 	 * @author junaid navigating to repository details
 	 */
 	private String issuesUrl, commitsUrl, pullsUrl, login, name, description, query;
+	
+	/**
+	 * @param issuesUrl
+	 * @param commitsUrl
+	 * @param pullsUrl
+	 * @param login
+	 * @param name
+	 * @param description
+	 * @return
+	 * @throws InterruptedException
+	 * @throws ExecutionException
+	 */
 
 	public Result navToRepositoryDetails(String issuesUrl, String commitsUrl, String pullsUrl, String login,
 			String name, String description) throws InterruptedException, ExecutionException {
@@ -168,7 +180,7 @@ public class Application extends Controller implements WSBodyReadables {
 
 	/**
 	 * @author maha_
-	 * @param user fetching user Profile
+	 * @param user
 	 * @return user profile
 	 * @throws InterruptedException thrown when a thread is waiting, sleeping, or otherwise occupied,and the thread is interrupted
 	 * @throws ExecutionException thrown when attempting to retrieve the result of a taskthat aborted by throwing an exception
@@ -198,8 +210,8 @@ public class Application extends Controller implements WSBodyReadables {
 
 	/**
 	 * @author maha_
-	 * @param user fetching repositories from user profile
-	 * @return user profile repositories
+	 * @param  user fetching repositories from user profile
+	 * @return Result
 	 * @throws InterruptedException thrown when a thread is waiting, sleeping, or otherwise occupied,and the thread is interrupted
 	 * @throws ExecutionException thrown when attempting to retrieve the result of a taskthat aborted by throwing an exception
 	 */
@@ -230,8 +242,8 @@ public class Application extends Controller implements WSBodyReadables {
 	
 	/**
 	 * @author WaleedAhmed05
-	 * @param query - topic keyword
-	 * @return list of Json data
+	 * @param  query - topic keyword
+	 * @return Result
 	 * @throws InterruptedException - If any interruption occurs
 	 * @throws ExecutionException - If any exceptions in execution
 	 */

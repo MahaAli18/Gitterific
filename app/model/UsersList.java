@@ -67,5 +67,30 @@ public class UsersList {
 		this.avatar_url=avatar_url;
 
 	}
+	
+	public void setLogin(String login) {
+		this.login=login;
+	}
+	
+	public String getlogin() {
+		return login;
+	}
+	
+	public void setsubscription(String subscription) {
+		this.subscription=subscription;
+	}
+	
+	public String getsubscription() {
+		return subscription;
+	}
+	
+	public void setId(String id) {
+		this.id=id;
+	}
+	
+	public String getId() {
+		return id;
+	}
+	
 
 }

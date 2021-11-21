@@ -25,3 +25,17 @@ update
 compile
 eclipse
 run
+clean
+update
+run
+test
+clean 
+update 
+eclipse
+reload
+test
+jacoco
+update
+test
+jacoco
+run

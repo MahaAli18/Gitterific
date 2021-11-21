@@ -1,5 +1,1 @@
-<<<<<<< HEAD
-typeSearchIndex = [{"l":"All Classes","u":"allclasses-index.html"},{"p":"services","l":"TopicsRepositoryFetching"}];updateSearchResults();
-=======
-typeSearchIndex = [{"l":"All Classes","u":"allclasses-index.html"},{"p":"controllers","l":"Application"},{"p":"<Unnamed>","l":"BrowserTest"},{"p":"<Unnamed>","l":"FunctionalTest"},{"p":"model","l":"ListRepositories"},{"p":"services","l":"RepositoryFetching"},{"p":"services","l":"UserFetching"},{"p":"model","l":"UserRepos"},{"p":"services","l":"UserReposFetch"},{"p":"model","l":"UsersList"}];updateSearchResults();
->>>>>>> master
+typeSearchIndex = [{"l":"All Classes","u":"allclasses-index.html"},{"p":"controllers","l":"Application"},{"p":"services","l":"CommitsFetching"},{"p":"services","l":"IssueFetching"},{"p":"model","l":"ListRepoDetails"},{"p":"model","l":"ListRepositories"},{"p":"model","l":"ListTopicsRepos"},{"p":"services","l":"PullsFetching"},{"p":"services","l":"RepositoryFetching"},{"p":"controllers","l":"RoutingTest"},{"p":"services","l":"TopicsRepositoryFetching"},{"p":"services","l":"UserFetching"},{"p":"model","l":"UserRepos"},{"p":"services","l":"UserReposFetch"},{"p":"model","l":"UsersList"},{"p":"controllers","l":"userTest"}];updateSearchResults();

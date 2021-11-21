@@ -6,6 +6,15 @@ package model;
  *
  */
 public class UserRepos {
+	/**
+	 * user unique id
+	 * name of the user
+	 * login id of user
+	 * issues in profile
+	 * commits url
+	 * pulls request
+	 * description of the repository
+	 */
 	public String id;
 	public String name;
 	public String login;

@@ -57,55 +57,6 @@ public class ListRepositories {
 		    
 		}
       }
-      public String getvisibility() {
-    	  return visibility;
-      }
       
-      public String getUser() {
-    	  return name;
-      }
-      
-      public void setUser() {
-    	  this.name = name;
-      }
-      
-      public String getlogin() {
-    	  return login;
-      }
-      
-      public void setlogin() {
-    	  this.login = login;
-      }
-      
-      public String getissues_url() {
-    	  return issues_url;
-      }
-      
-      public void setissues_url() {
-    	  this.issues_url = issues_url;
-      }
-      
-      public String getcommits_url() {
-    	  return commits_url;
-      }
-      
-      public void setcommits_url() {
-    	  this.commits_url = commits_url;
-      }
-      
-      public String getPulls_url() {
-  		return pulls_url;
-  	}
-
-  	public void setPulls_url(String pulls_url) {
-  		this.pulls_url = pulls_url;
-  	}
-
-  	public String getDescription() {
-  		return description;
-  	}
-
-  	public void setDescription(String description) {
-  		this.description = description;
-  	}
+    
 }
