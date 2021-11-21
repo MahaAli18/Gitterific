@@ -62,12 +62,13 @@ public class TopicsRepositoryFetching {
     		
     		//items.get("topics").
     		
-    		//testing part...
+    		/*
     		data.forEach(topics -> {
     			String topicword = topics.asText();
     			topicsCounter.add((topicword));
     			//topicsCounter.add(topics.get(0).asText());
     		});
+    		*/
     		
     		
     		
@@ -95,7 +96,7 @@ public class TopicsRepositoryFetching {
     		String commits_url = items.get("commits_url").asText();
     		String pulls_url = items.get("pulls_url").asText();
     		String description = items.get("description").asText();
-    		repos.add(new ListTopicsRepos(login,name,user_url,html_url,topicword,topicsCounter,issues_url,commits_url,pulls_url,description));
+    		repos.add(new ListTopicsRepos(login,name,user_url,html_url,topicword,issues_url,commits_url,pulls_url,description));
     	});
 		return repos;
     	
