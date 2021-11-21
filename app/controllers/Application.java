@@ -151,7 +151,7 @@ public class Application extends Controller implements WSBodyReadables {
 	 * @author piedamsel46 Fetching 100 newest commits and the compile statistics
 	 */
 	
-	public void get_full_commits_data(String url) throws InterruptedException, ExecutionException {
+	public void fetchCommits(String url) throws InterruptedException, ExecutionException {
     	System.out.println("Inside get_full_commits_data");
     	WSRequest req = ws.url("https://api.github.com/users/"+user).addHeader("Content-Type", "application/json");
     	req.addQueryParameter("per_page", "100");
