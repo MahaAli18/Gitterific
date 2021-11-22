@@ -1,54 +1,25 @@
 package controllers;
-import akka.actor.ActorSystem;
-
-import akka.stream.Materializer;
 import model.ListRepoDetails;
 import model.ListRepositories;
 import model.ListTopicsRepos;
 import model.UserRepos;
 import model.UsersList;
-
-import org.junit.After;
-import org.junit.Before;
 import org.junit.Test;
-import org.mockito.Mock;
-import org.mockito.Mockito;
-
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
-
-//import play.Application;
-import controllers.Application;
-import play.api.inject.guice.GuiceApplicationBuilder;
-import play.api.test.CSRFTokenHelper;
-import play.data.FormFactory;
-import play.i18n.MessagesApi;
-import play.libs.ws.WSResponse;
 import play.mvc.Http;
 import play.mvc.Result;
 import play.test.WithApplication;
-import services.PullsFetching;
+import services.IssueFetching;
+import services.RepositoryFetching;
+import services.TopicsRepositoryFetching;
 import services.UserFetching;
+import services.UserReposFetch;
 
 import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
-import java.util.Map;
-import java.util.concurrent.CompletableFuture;
-
-import static org.hamcrest.CoreMatchers.is;
-import static org.hamcrest.MatcherAssert.assertThat;
-import static org.mockito.Mockito.*;
-import static play.inject.Bindings.bind;
 import static play.test.Helpers.*;
-
-import org.junit.Test;
-//import play.Application;
-import play.mvc.Http;
-import play.mvc.Result;
-import play.test.WithApplication;
-
 import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertNotEquals;
 import static play.mvc.Http.Status.OK;
 import static play.test.Helpers.GET;
 import static play.test.Helpers.route;
@@ -57,58 +28,6 @@ import static play.test.Helpers.route;
 
 
 public class RoutingTest extends WithApplication {
-	  
-  
-	/*
-	//new part
-	@Test
-    public void  testFetchUser() {
-        CompletableFuture<Result> result = (CompletableFuture<Result>) Application.fetchUsers("TheAlgorithms");
-        try {
-            Result r = result.get();
-            assertEquals(OK, r.status());
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-    }
-	*/
-	
-	
-	/*
-	//new service test
-	
-	@Test
-    public void extractUserTesting() {
-		
-		ArrayList<String> lst=new ArrayList<>();
-    	lst.add("Random");
-    	UsersList user=new UsersList("Fighter","Fighter",
-    			"reponame","git","28","11",
-    			"bot","bot","api","www.github.com/image");
-    	
-		UserFetching u1 = new UserFetching(user);
-        
-        final WSResponse wsResponseMock = Mockito.mock(WSResponse.class);
-        Mockito.doReturn(200).when(wsResponseMock).getStatus();
-        final String jsonStr = "{\"login\":\"MohammedContractor\",\"id\":54094664,\"node_id\":\"MDQ6VXNlcjU0MDk0NjY0\",\"avatar_url\":\"https://avatars.githubusercontent.com/u/54094664?v=4\",\"gravatar_id\":\"\",\"url\":\"https://api.github.com/users/MohammedContractor\",\"html_url\":\"https://github.com/MohammedContractor\",\"followers_url\":\"https://api.github.com/users/MohammedContractor/followers\",\"following_url\":\"https://api.github.com/users/MohammedContractor/following{/other_user}\",\"gists_url\":\"https://api.github.com/users/MohammedContractor/gists{/gist_id}\",\"starred_url\":\"https://api.github.com/users/MohammedContractor/starred{/owner}{/repo}\",\"subscriptions_url\":\"https://api.github.com/users/MohammedContractor/subscriptions\",\"organizations_url\":\"https://api.github.com/users/MohammedContractor/orgs\",\"repos_url\":\"https://api.github.com/users/MohammedContractor/repos\",\"events_url\":\"https://api.github.com/users/MohammedContractor/events{/privacy}\",\"received_events_url\":\"https://api.github.com/users/MohammedContractor/received_events\",\"type\":\"User\",\"site_admin\":false,\"name\":null,\"company\":null,\"blog\":\"\",\"location\":null,\"email\":null,\"hireable\":null,\"bio\":null,\"twitter_username\":null,\"public_repos\":1,\"public_gists\":0,\"followers\":0,\"following\":1,\"created_at\":\"2019-08-14T05:59:45Z\",\"updated_at\":\"2021-10-31T16:30:26Z\"}";
-        ObjectMapper mapper = new ObjectMapper();
-        JsonNode jsonNode = null;
-        try {
-            jsonNode = mapper.readTree(jsonStr);
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-        Mockito.doReturn(jsonNode)
-            .when(wsResponseMock)
-            .asJson();
-        assertEquals(u1, UserFetching.getUsersList(wsResponseMock));
-        //assertEquals(u1, UserFetching.getUsersList(jsonNode));
-    }
-	
-	//
-	
-	*/
-	
 	
     @Test
 	public void testListRepoDetails() {
@@ -303,28 +222,67 @@ public class RoutingTest extends WithApplication {
         Result result = route(app, request);
         assertEquals(OK, result.status());
     }
- 
-   /* 
+    
     @Test
-    public void testfetchCommits() {
-    	String issuesUrl ="https%3A%2F%2Fapi.github.com%2Frepos%2Fandranikm97%2Fggl-books-search%2Fissues%7B%2Fnumber%7D&";
-        String commitsUrl = "https%3A%2F%2Fapi.github.com%2Frepos%2Fandranikm97%2Fggl-books-search%2Fcommits%7B%2Fsha%7D&";
-    	String pullsUrl= "https%3A%2F%2Fapi.github.com%2Frepos%2Fandranikm97%2Fggl-books-search%2Fpulls%7B%2Fnumber%7D&";
-    	String login="andranikm97&";
-    	String name="ggl-books-search&";
-    	String description="A+simple+React+app+working+with+Google+Book+Search+API";
-        Http.RequestBuilder request = new Http.RequestBuilder()
-                .method(GET)
-                .uri("/navToRepositoryDetails?"+"issuesUrl="+issuesUrl+"commitsUrl="+commitsUrl+
-                		"pullsUrl="+pullsUrl+"login="+login+"name="+name+"description="+description);
-        //        .uri("/fetchPulls");
-        
-      //  request = new Http.RequestBuilder()
-      //          .method(GET)
-       //         .uri("/fetchCommits");
-
-        Result result = route(app, request);
-        assertEquals(OK, result.status());
+    public void testRepositoryFetching() {
+    	ListRepositories lr = new ListRepositories();
+    	RepositoryFetching r1 = new RepositoryFetching(lr);
+    	RepositoryFetching r2 = new RepositoryFetching(lr);
+    	assertNotEquals(r1, r2);
     }
-   */
+    
+    @Test
+    public void testUserReposServices() {
+    	UsersList ur = new UsersList();
+    	UserFetching r1 = new UserFetching(ur);
+    	UserFetching r2 = new UserFetching(ur);
+    	assertNotEquals(r1, r2);
+    }
+    
+    @Test
+    public void testTopicsRepositoryFetching() {
+    	ListTopicsRepos ur = new ListTopicsRepos();
+    	TopicsRepositoryFetching r1 = new TopicsRepositoryFetching(ur);
+    	TopicsRepositoryFetching r2 = new TopicsRepositoryFetching(ur);
+    	assertNotEquals(r1, r2);
+    }
+    
+    @Test
+    public void testUserReposFetch() {
+    	UserRepos ur = new UserRepos();
+    	UserReposFetch r1 = new UserReposFetch(ur);
+    	UserReposFetch r2 = new UserReposFetch(ur);
+    	assertNotEquals(r1, r2);
+    }
+    
+    @Test
+    public void testIssueFetching() {
+    	ListRepoDetails ur = new ListRepoDetails();
+    	IssueFetching r1 = new IssueFetching(ur);
+    	IssueFetching r2 = new IssueFetching(ur);
+    	assertNotEquals(r1, r2);
+    }
+ 
+   
+//    @Test
+//    public void testfetchCommits() {
+//    	String issuesUrl ="https%3A%2F%2Fapi.github.com%2Frepos%2Fandranikm97%2Fggl-books-search%2Fissues%7B%2Fnumber%7D&";
+//        String commitsUrl = "https%3A%2F%2Fapi.github.com%2Frepos%2Fandranikm97%2Fggl-books-search%2Fcommits%7B%2Fsha%7D&";
+//    	String pullsUrl= "https%3A%2F%2Fapi.github.com%2Frepos%2Fandranikm97%2Fggl-books-search%2Fpulls%7B%2Fnumber%7D&";
+//    	String login="andranikm97&";
+//    	String name="ggl-books-search&";
+//    	String description="A+simple+React+app+working+with+Google+Book+Search+API";
+//        Http.RequestBuilder request = new Http.RequestBuilder()
+//                .method(GET)
+//                .uri("/navToRepositoryDetails?"+"issuesUrl="+issuesUrl+"commitsUrl="+commitsUrl+
+//                		"pullsUrl="+pullsUrl+"login="+login+"name="+name+"description="+description)
+//                .uri("/fetchPulls");
+//              request = new Http.RequestBuilder()
+//              .method(GET)
+//              .uri("/fetchCommits");
+//
+//        Result result = route(app, request);
+//        assertEquals(OK, result.status());
+//    }
+//   
 }
