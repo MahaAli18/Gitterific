@@ -68,6 +68,9 @@ public class UsersList {
 
 	}
 	
+    /**
+     * @param login
+     */
 	public void setLogin(String login) {
 		this.login=login;
 	}
@@ -76,6 +79,9 @@ public class UsersList {
 		return login;
 	}
 	
+	/**
+	 * @param subscription
+	 */
 	public void setsubscription(String subscription) {
 		this.subscription=subscription;
 	}
@@ -84,6 +90,9 @@ public class UsersList {
 		return subscription;
 	}
 	
+	/**
+	 * @param id
+	 */
 	public void setId(String id) {
 		this.id=id;
 	}
