@@ -29,6 +29,16 @@ public class UserRepos {
 		this.name = "";
 
 	}
+	
+	/**
+	 * @param id user unique id
+	 * @param name of the user
+	 * @param login id of user
+	 * @param issues_url in profile
+	 * @param commits_url in profile
+	 * @param pulls_url pulls request
+	 * @param description of repos
+	 */
 
 	public UserRepos(String id, String name, String login, String issues_url, String commits_url,
 			String pulls_url, String description) {
