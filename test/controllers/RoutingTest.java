@@ -48,6 +48,8 @@ import static org.junit.Assert.assertEquals;
 import static play.mvc.Http.Status.OK;
 import static play.test.Helpers.GET;
 import static play.test.Helpers.route;
+
+
 public class RoutingTest extends WithApplication {
 	
 	
@@ -59,18 +61,18 @@ public class RoutingTest extends WithApplication {
     @Test
 	public void testListRepoDetails() {
 		
-		ListRepoDetails rp=new ListRepoDetails();
-		rp.setTitle("Gitterific");
-		assertEquals(rp.getTitle(),"Gitterific");
+    	ListRepoDetails rp =new ListRepoDetails("UltimateGamer","https://github.com/google/material-design-icons");
+   		assertEquals(rp.title,"UltimateGamer");
+   		assertEquals(rp.url,"https://github.com/google/material-design-icons");
 		
 	}
     
     @Test
    	public void testListRepoDetails_url() {
    		
-   		ListRepoDetails rp=new ListRepoDetails();
-   		rp.setUrl("https://github.com/google/material-design-icons");
-   		assertEquals(rp.getUrl(),"https://github.com/google/material-design-icons");
+   		ListRepoDetails rp =new ListRepoDetails("UltimateGamer","https://github.com/google/material-design-icons");
+   		assertEquals(rp.title,"UltimateGamer");
+   		assertEquals(rp.url,"https://github.com/google/material-design-icons");
    		
    	}
 
