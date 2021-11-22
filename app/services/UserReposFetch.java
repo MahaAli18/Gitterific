@@ -44,21 +44,13 @@ public class UserReposFetch {
 	 */
 
 	public List<UserRepos> getUsersReposList(JsonNode data) throws InterruptedException, ExecutionException {
-
-		
-		
-	
-		
 		
 		return StreamSupport.stream(data.spliterator(), false)
 				.map(item -> new UserRepos(item.get("id").asText(), item.get("name").asText(),
 						item.get("owner").get("login").asText(), item.get("issues_url").asText(),
 						item.get("commits_url").asText(), item.get("pulls_url").asText(),
 						item.get("description").asText()))
-				.collect(Collectors.toList());
-		
-		
-		
+				.collect(Collectors.toList());	
 
 	}
 }
