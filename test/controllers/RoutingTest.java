@@ -206,22 +206,22 @@ public class RoutingTest extends WithApplication {
     
     
     @Test
-    public void testnavToRepositoryDetails() {
-    	
-    	String issuesUrl ="https%3A%2F%2Fapi.github.com%2Frepos%2Fandranikm97%2Fggl-books-search%2Fissues%7B%2Fnumber%7D&";
-        String commitsUrl = "https%3A%2F%2Fapi.github.com%2Frepos%2Fandranikm97%2Fggl-books-search%2Fcommits%7B%2Fsha%7D&";
-    	String pullsUrl= "https%3A%2F%2Fapi.github.com%2Frepos%2Fandranikm97%2Fggl-books-search%2Fpulls%7B%2Fnumber%7D&";
-    	String login="andranikm97&";
-    	String name="ggl-books-search&";
-    	String description="A+simple+React+app+working+with+Google+Book+Search+API";
-        Http.RequestBuilder request = new Http.RequestBuilder()
-                .method(GET)
-                .uri("/navToRepositoryDetails?"+"issuesUrl="+issuesUrl+"commitsUrl="+commitsUrl+
-                		"pullsUrl="+pullsUrl+"login="+login+"name="+name+"description="+description);
+	public void testnavToRepositoryDetails() {
 
-        Result result = route(app, request);
-        assertEquals(OK, result.status());
-    }
+		String issuesUrl = "https%3A%2F%2Fapi.github.com%2Frepos%2Fandranikm97%2Fggl-books-search%2Fissues%7B%2Fnumber%7D&";
+		String commitsUrl = "https%3A%2F%2Fapi.github.com%2Frepos%2Fandranikm97%2Fggl-books-search%2Fcommits%7B%2Fsha%7D&";
+		String pullsUrl = "https%3A%2F%2Fapi.github.com%2Frepos%2Fandranikm97%2Fggl-books-search%2Fpulls%7B%2Fnumber%7D&";
+		String login = "andranikm97&";
+		String name = "ggl-books-search&";
+		String description = "A+simple+React+app+working+with+Google+Book+Search+API";
+
+		Http.RequestBuilder request = new Http.RequestBuilder().method(GET)
+				.uri("/navToRepositoryDetails?" + "issuesUrl=" + issuesUrl + "commitsUrl=" + commitsUrl + "pullsUrl="
+						+ pullsUrl + "login=" + login + "name=" + name + "description=" + description);
+
+		Result result = route(app, request);
+		assertEquals(OK, result.status());
+	}
     
     @Test
     public void testRepositoryFetching() {
@@ -263,26 +263,79 @@ public class RoutingTest extends WithApplication {
     	assertNotEquals(r1, r2);
     }
  
-   
-//    @Test
-//    public void testfetchCommits() {
-//    	String issuesUrl ="https%3A%2F%2Fapi.github.com%2Frepos%2Fandranikm97%2Fggl-books-search%2Fissues%7B%2Fnumber%7D&";
-//        String commitsUrl = "https%3A%2F%2Fapi.github.com%2Frepos%2Fandranikm97%2Fggl-books-search%2Fcommits%7B%2Fsha%7D&";
-//    	String pullsUrl= "https%3A%2F%2Fapi.github.com%2Frepos%2Fandranikm97%2Fggl-books-search%2Fpulls%7B%2Fnumber%7D&";
-//    	String login="andranikm97&";
-//    	String name="ggl-books-search&";
-//    	String description="A+simple+React+app+working+with+Google+Book+Search+API";
-//        Http.RequestBuilder request = new Http.RequestBuilder()
-//                .method(GET)
-//                .uri("/navToRepositoryDetails?"+"issuesUrl="+issuesUrl+"commitsUrl="+commitsUrl+
-//                		"pullsUrl="+pullsUrl+"login="+login+"name="+name+"description="+description)
-//                .uri("/fetchPulls");
-//              request = new Http.RequestBuilder()
-//              .method(GET)
-//              .uri("/fetchCommits");
-//
-//        Result result = route(app, request);
-//        assertEquals(OK, result.status());
-//    }
-//   
+    
+    @Test
+	public void testfetchisuues() {
+
+		String issuesUrl = "https%3A%2F%2Fapi.github.com%2Frepos%2Fandranikm97%2Fggl-books-search%2Fissues%7B%2Fnumber%7D&";
+		String commitsUrl = "https%3A%2F%2Fapi.github.com%2Frepos%2Fandranikm97%2Fggl-books-search%2Fcommits%7B%2Fsha%7D&";
+		String pullsUrl = "https%3A%2F%2Fapi.github.com%2Frepos%2Fandranikm97%2Fggl-books-search%2Fpulls%7B%2Fnumber%7D&";
+		String login = "andranikm97&";
+		String name = "ggl-books-search&";
+		String description = "A+simple+React+app+working+with+Google+Book+Search+API";
+
+		      Http.RequestBuilder request = new Http.RequestBuilder().method(GET)
+
+				.uri("/navToRepositoryDetails?" + "issuesUrl=" + issuesUrl + "commitsUrl=" + commitsUrl + "pullsUrl="
+						+ pullsUrl + "login=" + login + "name=" + name + "description=" + description);
+
+		          route(app, request);
+
+
+		Http.RequestBuilder request1 = new Http.RequestBuilder().method(GET).uri("/fetchIssues");
+
+		   Result result2 = route(app, request1);
+		   assertEquals(OK, result2.status());
+	}
+    
+    @Test
+	public void testfetchpulls() {
+
+		String issuesUrl = "https%3A%2F%2Fapi.github.com%2Frepos%2Fandranikm97%2Fggl-books-search%2Fissues%7B%2Fnumber%7D&";
+		String commitsUrl = "https%3A%2F%2Fapi.github.com%2Frepos%2Fandranikm97%2Fggl-books-search%2Fcommits%7B%2Fsha%7D&";
+		String pullsUrl = "https%3A%2F%2Fapi.github.com%2Frepos%2Fandranikm97%2Fggl-books-search%2Fpulls%7B%2Fnumber%7D&";
+		String login = "andranikm97&";
+		String name = "ggl-books-search&";
+		String description = "A+simple+React+app+working+with+Google+Book+Search+API";
+
+		Http.RequestBuilder request = new Http.RequestBuilder().method(GET)
+
+				.uri("/navToRepositoryDetails?" + "issuesUrl=" + issuesUrl + "commitsUrl=" + commitsUrl + "pullsUrl="
+						+ pullsUrl + "login=" + login + "name=" + name + "description=" + description);
+
+		route(app, request);
+
+
+		Http.RequestBuilder request1 = new Http.RequestBuilder().method(GET).uri("/fetchPulls");
+
+		Result result2 = route(app, request1);
+		assertEquals(OK, result2.status());
+	}
+    
+    @Test
+	public void testfetchcommits() {
+
+		String issuesUrl = "https%3A%2F%2Fapi.github.com%2Frepos%2Fandranikm97%2Fggl-books-search%2Fissues%7B%2Fnumber%7D&";
+		String commitsUrl = "https%3A%2F%2Fapi.github.com%2Frepos%2Fandranikm97%2Fggl-books-search%2Fcommits%7B%2Fsha%7D&";
+		String pullsUrl = "https%3A%2F%2Fapi.github.com%2Frepos%2Fandranikm97%2Fggl-books-search%2Fpulls%7B%2Fnumber%7D&";
+		String login = "andranikm97&";
+		String name = "ggl-books-search&";
+		String description = "A+simple+React+app+working+with+Google+Book+Search+API";
+
+		Http.RequestBuilder request = new Http.RequestBuilder().method(GET)
+
+				.uri("/navToRepositoryDetails?" + "issuesUrl=" + issuesUrl + "commitsUrl=" + commitsUrl + "pullsUrl="
+						+ pullsUrl + "login=" + login + "name=" + name + "description=" + description);
+
+		route(app, request);
+
+
+    	ListRepoDetails rp =new ListRepoDetails("UltimateGamer","https://github.com/google/material-design-icons");
+   		assertEquals(rp.title,"UltimateGamer");
+   		assertEquals(rp.url,"https://github.com/google/material-design-icons");
+		Http.RequestBuilder request1 = new Http.RequestBuilder().method(GET).uri("/fetchCommits");
+
+		Result result2 = route(app, request1);
+		assertEquals(OK, result2.status());
+	}
 }
