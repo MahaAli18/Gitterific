@@ -165,6 +165,7 @@ public class Application extends Controller implements WSBodyReadables {
 
 	public Result back() throws InterruptedException, ExecutionException {
 		this.issuesUrl = this.commitsUrl = this.pullsUrl = this.login = this.name = this.description = "";
+		this.get_repos.clear();
 		return fetch(query);
 	}
 
