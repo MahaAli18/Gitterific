@@ -1,72 +1,105 @@
-@(data: List[model.ListRepoDetails], login: String, name: String, description: String, title: String)
+@(login: String, name: String, description: String)
 <html>
-    <style>
-            table {
-                font-family: arial, sans-serif;
-                border-collapse: collapse;
-                width: 90%;
+	<style>
+         table {
+         	font-family: arial, sans-serif;
+            border-collapse: collapse;
+            width: 90%;
             }
 
-            td, th {
-                border: 1px solid #dddddd;
-                text-align: left;
-                padding: 8px;
-                overflow-wrap: anywhere;
+         td, th {
+            border: 1px solid #dddddd;
+            text-align: left;
+            padding: 8px;
+            overflow-wrap: anywhere;
             }
 
-            tr:nth-child(even) {
-                background-color: #dddddd;
+         tr:nth-child(even) {
+            background-color: #dddddd;
             }
 
-            .header {
-                background-color: #171616;
-                color: bisque;
-                margin: -15px;
-                margin-bottom: 50px;
-                padding: 6px;
+         .header {
+         	background-color: #171616;
+            color: bisque;
+            margin: -15px;
+            margin-bottom: 50px;
+            padding: 6px;
             }
-    </style>
-
+	</style>
+	<head>
+		<title>Gitterific</title>
+		<script type='text/javascript' src='https://code.jquery.com/jquery-3.3.1.min.js'></script>
+	</head>
     <body>
         <center class="header">
             <div>
-                <h1 class="center">Repository Name: @name</h1>
+                <h1 class="center">Repository Name: </h1>
+                <h1 class="center">@name</h1>
             </div>
             <div>
-                <h1 class="center">Owner Name: @login</h1>
-            </div>
-            <div>
-                <h1 class="center">Description: @description</h1>
+                <h1 class="center">Owner Name: </h1>
+                <h1 class="center">@login</h1>
             </div>
         </center>
 
         <div>
-            <a href="@routes.Application.fetchIssues()">Issues</a>
+            <a href="#" onclick="populateRepoDetails('fetchIssuesWS', 'issues', 'Issues')">Issues</a>
         </div>
 
         <div>
-            <a href="@routes.Application.fetchCommits()">Commits</a>
+            <a href="#" onclick="populateRepoDetails('fetchCommitsWS', 'commits', 'Commits')">Commits</a>
         </div>
 
         <div>
-            <a href="@routes.Application.fetchPulls()">Pulls</a>
+            <a href="#" onclick="populateRepoDetails('fetchPullsWS', 'pulls', 'Pulls')">Pulls</a>
         </div>
         
         <div>
-            <a href="@routes.Application.back()">Back</a>
+            <a href="@routes.Application.index">Back</a>
         </div>
 
         <center>
-            <table>
-                <tr>
-                    <th>@title</th>
-                </tr>
-                @for(d <- data) {
-                    <tr>
-                        <td>@d.title</td>
-                    </tr>
-                }
+            <table id="resultsTable">
             </table>
         </center>
     </body>
+    
+    <script>
+    	var sockets = [];
+    	populateRepoDetails('fetchIssuesWS', 'issues', 'Issues');
+		function populateRepoDetails(socket, url, title) {
+			closeAllSockets();
+			let ws = new WebSocket("ws://localhost:9000/"+ socket);
+			sockets.push(ws);
+			ws.onopen = () => ws.send(JSON.stringify({
+				"uri": "https://api.github.com/repos/@login/@name/"+url
+			}));
+			var resultsTable = document.getElementById("resultsTable");
+			var header = title;
+			ws.onmessage = function(event) {
+				console.log("Updating list of " + header);
+				clearTable(resultsTable, header);
+				details = JSON.parse(event.data).data;
+		  		for (itr in details) {
+		  			var row = resultsTable.insertRow(resultsTable.rows.length);
+		  			var title = row.insertCell(0);
+		  			title.innerHTML = details[itr].title;
+		  		}
+			}
+		}
+		function closeAllSockets() {
+			sockets.forEach(function(s) {
+		        s.close();
+		    });
+		}
+		
+		function clearTable(resultsTable, title) {
+			while (resultsTable.hasChildNodes()) {
+					resultsTable.removeChild(resultsTable.lastChild);
+		    }
+			resultsTable.createTHead().insertRow(0).insertCell(0).innerHTML = "<b>"+title+"</b>";
+		}
+	</script>
+    
+    
 </html>

@@ -10,17 +10,17 @@ import _root_.play.libs.F
 // @LINE:7
 package controllers {
 
-  // @LINE:19
+  // @LINE:25
   class ReverseAssets(_prefix: => String) {
     def _defaultPrefix: String = {
       if (_prefix.endsWith("/")) "" else "/"
     }
 
   
-    // @LINE:19
-    def versioned(file:Asset): Call = {
-      implicit lazy val _rrc = new play.core.routing.ReverseRouteContext(Map(("path", "/public"))); _rrc
-      Call("GET", _prefix + { _defaultPrefix } + "assets/" + implicitly[play.api.mvc.PathBindable[Asset]].unbind("file", file))
+    // @LINE:25
+    def versioned(file:String): Call = {
+      
+      Call("GET", _prefix + { _defaultPrefix } + "assets/" + implicitly[play.api.mvc.PathBindable[String]].unbind("file", file))
     }
   
   }
@@ -32,13 +32,19 @@ package controllers {
     }
 
   
-    // @LINE:14
+    // @LINE:18
     def topics(query:String): Call = {
       
       Call("GET", _prefix + { _defaultPrefix } + "topics" + play.core.routing.queryString(List(Some(implicitly[play.api.mvc.QueryStringBindable[String]].unbind("query", query)))))
     }
   
-    // @LINE:12
+    // @LINE:11
+    def fetchCommitsWS(): Call = {
+      
+      Call("GET", _prefix + { _defaultPrefix } + "fetchCommitsWS")
+    }
+  
+    // @LINE:16
     def fetchPulls(): Call = {
       
       Call("GET", _prefix + { _defaultPrefix } + "fetchPulls")
@@ -50,31 +56,55 @@ package controllers {
       Call("GET", _prefix + { _defaultPrefix } + "fetch" + play.core.routing.queryString(List(Some(implicitly[play.api.mvc.QueryStringBindable[String]].unbind("query", query)))))
     }
   
-    // @LINE:15
+    // @LINE:12
+    def fetchPullsWS(): Call = {
+      
+      Call("GET", _prefix + { _defaultPrefix } + "fetchPullsWS")
+    }
+  
+    // @LINE:19
     def fetchUsers(user:String): Call = {
       
       Call("GET", _prefix + { _defaultPrefix } + "users/" + play.core.routing.dynamicString(implicitly[play.api.mvc.PathBindable[String]].unbind("user", user)))
     }
   
-    // @LINE:16
+    // @LINE:20
     def fetchUsersRepos(user:String): Call = {
       
       Call("GET", _prefix + { _defaultPrefix } + "users/" + play.core.routing.dynamicString(implicitly[play.api.mvc.PathBindable[String]].unbind("user", user)) + "/repos")
     }
   
-    // @LINE:11
+    // @LINE:15
     def fetchCommits(): Call = {
       
       Call("GET", _prefix + { _defaultPrefix } + "fetchCommits")
     }
   
-    // @LINE:10
+    // @LINE:9
+    def fetchRepositoriesWS(): Call = {
+      
+      Call("GET", _prefix + { _defaultPrefix } + "fetchRepositoriesWS")
+    }
+  
+    // @LINE:14
     def fetchIssues(): Call = {
       
       Call("GET", _prefix + { _defaultPrefix } + "fetchIssues")
     }
   
-    // @LINE:9
+    // @LINE:21
+    def navToRepositoryDetailsWS(login:String, name:String, description:String): Call = {
+      
+      Call("GET", _prefix + { _defaultPrefix } + "navToRepositoryDetailsWS/" + play.core.routing.dynamicString(implicitly[play.api.mvc.PathBindable[String]].unbind("login", login)) + "/" + play.core.routing.dynamicString(implicitly[play.api.mvc.PathBindable[String]].unbind("name", name)) + "/" + play.core.routing.dynamicString(implicitly[play.api.mvc.PathBindable[String]].unbind("description", description)))
+    }
+  
+    // @LINE:10
+    def fetchIssuesWS(): Call = {
+      
+      Call("GET", _prefix + { _defaultPrefix } + "fetchIssuesWS")
+    }
+  
+    // @LINE:13
     def navToRepositoryDetails(issuesUrl:String, commitsUrl:String, pullsUrl:String, login:String, name:String, description:String): Call = {
       
       Call("GET", _prefix + { _defaultPrefix } + "navToRepositoryDetails" + play.core.routing.queryString(List(Some(implicitly[play.api.mvc.QueryStringBindable[String]].unbind("issuesUrl", issuesUrl)), Some(implicitly[play.api.mvc.QueryStringBindable[String]].unbind("commitsUrl", commitsUrl)), Some(implicitly[play.api.mvc.QueryStringBindable[String]].unbind("pullsUrl", pullsUrl)), Some(implicitly[play.api.mvc.QueryStringBindable[String]].unbind("login", login)), Some(implicitly[play.api.mvc.QueryStringBindable[String]].unbind("name", name)), Some(implicitly[play.api.mvc.QueryStringBindable[String]].unbind("description", description)))))
@@ -82,14 +112,16 @@ package controllers {
   
     // @LINE:7
     def index: Call = {
+    
+      () match {
       
-      Call("GET", _prefix)
-    }
-  
-    // @LINE:13
-    def back(): Call = {
+        // @LINE:7
+        case ()  =>
+          
+          Call("GET", _prefix)
       
-      Call("GET", _prefix + { _defaultPrefix } + "back")
+      }
+    
     }
   
   }

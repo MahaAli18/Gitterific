@@ -10,7 +10,7 @@ import _root_.play.libs.F
 // @LINE:7
 package controllers.javascript {
 
-  // @LINE:19
+  // @LINE:25
   class ReverseAssets(_prefix: => String) {
 
     def _defaultPrefix: String = {
@@ -18,12 +18,12 @@ package controllers.javascript {
     }
 
   
-    // @LINE:19
+    // @LINE:25
     def versioned: JavaScriptReverseRoute = JavaScriptReverseRoute(
       "controllers.Assets.versioned",
       """
-        function(file1) {
-          return _wA({method:"GET", url:"""" + _prefix + { _defaultPrefix } + """" + "assets/" + (""" + implicitly[play.api.mvc.PathBindable[Asset]].javascriptUnbind + """)("file", file1)})
+        function(file0) {
+          return _wA({method:"GET", url:"""" + _prefix + { _defaultPrefix } + """" + "assets/" + (""" + implicitly[play.api.mvc.PathBindable[String]].javascriptUnbind + """)("file", file0)})
         }
       """
     )
@@ -38,7 +38,7 @@ package controllers.javascript {
     }
 
   
-    // @LINE:14
+    // @LINE:18
     def topics: JavaScriptReverseRoute = JavaScriptReverseRoute(
       "controllers.Application.topics",
       """
@@ -48,7 +48,17 @@ package controllers.javascript {
       """
     )
   
-    // @LINE:12
+    // @LINE:11
+    def fetchCommitsWS: JavaScriptReverseRoute = JavaScriptReverseRoute(
+      "controllers.Application.fetchCommitsWS",
+      """
+        function() {
+          return _wA({method:"GET", url:"""" + _prefix + { _defaultPrefix } + """" + "fetchCommitsWS"})
+        }
+      """
+    )
+  
+    // @LINE:16
     def fetchPulls: JavaScriptReverseRoute = JavaScriptReverseRoute(
       "controllers.Application.fetchPulls",
       """
@@ -68,7 +78,17 @@ package controllers.javascript {
       """
     )
   
-    // @LINE:15
+    // @LINE:12
+    def fetchPullsWS: JavaScriptReverseRoute = JavaScriptReverseRoute(
+      "controllers.Application.fetchPullsWS",
+      """
+        function() {
+          return _wA({method:"GET", url:"""" + _prefix + { _defaultPrefix } + """" + "fetchPullsWS"})
+        }
+      """
+    )
+  
+    // @LINE:19
     def fetchUsers: JavaScriptReverseRoute = JavaScriptReverseRoute(
       "controllers.Application.fetchUsers",
       """
@@ -78,7 +98,7 @@ package controllers.javascript {
       """
     )
   
-    // @LINE:16
+    // @LINE:20
     def fetchUsersRepos: JavaScriptReverseRoute = JavaScriptReverseRoute(
       "controllers.Application.fetchUsersRepos",
       """
@@ -88,7 +108,7 @@ package controllers.javascript {
       """
     )
   
-    // @LINE:11
+    // @LINE:15
     def fetchCommits: JavaScriptReverseRoute = JavaScriptReverseRoute(
       "controllers.Application.fetchCommits",
       """
@@ -98,7 +118,17 @@ package controllers.javascript {
       """
     )
   
-    // @LINE:10
+    // @LINE:9
+    def fetchRepositoriesWS: JavaScriptReverseRoute = JavaScriptReverseRoute(
+      "controllers.Application.fetchRepositoriesWS",
+      """
+        function() {
+          return _wA({method:"GET", url:"""" + _prefix + { _defaultPrefix } + """" + "fetchRepositoriesWS"})
+        }
+      """
+    )
+  
+    // @LINE:14
     def fetchIssues: JavaScriptReverseRoute = JavaScriptReverseRoute(
       "controllers.Application.fetchIssues",
       """
@@ -108,7 +138,27 @@ package controllers.javascript {
       """
     )
   
-    // @LINE:9
+    // @LINE:21
+    def navToRepositoryDetailsWS: JavaScriptReverseRoute = JavaScriptReverseRoute(
+      "controllers.Application.navToRepositoryDetailsWS",
+      """
+        function(login0,name1,description2) {
+          return _wA({method:"GET", url:"""" + _prefix + { _defaultPrefix } + """" + "navToRepositoryDetailsWS/" + encodeURIComponent((""" + implicitly[play.api.mvc.PathBindable[String]].javascriptUnbind + """)("login", login0)) + "/" + encodeURIComponent((""" + implicitly[play.api.mvc.PathBindable[String]].javascriptUnbind + """)("name", name1)) + "/" + encodeURIComponent((""" + implicitly[play.api.mvc.PathBindable[String]].javascriptUnbind + """)("description", description2))})
+        }
+      """
+    )
+  
+    // @LINE:10
+    def fetchIssuesWS: JavaScriptReverseRoute = JavaScriptReverseRoute(
+      "controllers.Application.fetchIssuesWS",
+      """
+        function() {
+          return _wA({method:"GET", url:"""" + _prefix + { _defaultPrefix } + """" + "fetchIssuesWS"})
+        }
+      """
+    )
+  
+    // @LINE:13
     def navToRepositoryDetails: JavaScriptReverseRoute = JavaScriptReverseRoute(
       "controllers.Application.navToRepositoryDetails",
       """
@@ -123,17 +173,11 @@ package controllers.javascript {
       "controllers.Application.index",
       """
         function() {
-          return _wA({method:"GET", url:"""" + _prefix + """"})
-        }
-      """
-    )
-  
-    // @LINE:13
-    def back: JavaScriptReverseRoute = JavaScriptReverseRoute(
-      "controllers.Application.back",
-      """
-        function() {
-          return _wA({method:"GET", url:"""" + _prefix + { _defaultPrefix } + """" + "back"})
+        
+          if (true) {
+            return _wA({method:"GET", url:"""" + _prefix + """"})
+          }
+        
         }
       """
     )

@@ -1,5 +1,22 @@
-[0m[[0m[31merror[0m] [0m[0mC:\Users\maha_\Desktop\SOENProject\Gitterific\app\services\UserReposFetch.java:23:1: constructor UserRepos in class model.UserRepos cannot be applied to given types;[0m
-[0m[[0m[31merror[0m] [0m[0m  required: java.lang.String,java.lang.String,java.lang.String,java.lang.String,java.lang.String,java.lang.String,java.lang.String[0m
-[0m[[0m[31merror[0m] [0m[0m  found: no arguments[0m
-[0m[[0m[31merror[0m] [0m[0m  reason: actual and formal argument lists differ in length[0m
-[0m[[0m[31merror[0m] [0m[0mnew UserRepos()[0m
+[0m[[0m[31merror[0m] [0m[0mC:\App project\Gitterific\app\controllers\Application.java:21:14: Application is already defined as class Application[0m
+[0m[[0m[31merror[0m] [0m[0mpublic class Application extends Controller implements WSBodyReadables {[0m
+[0m[[0m[31merror[0m] [0m[0m             ^[0m
+[0m[[0m[31merror[0m] [0m[0mC:\App project\Gitterific\app\model\ListRepoDetails.java:8:14: ListRepoDetails is already defined as class ListRepoDetails[0m
+[0m[[0m[31merror[0m] [0m[0mpublic class ListRepoDetails {[0m
+[0m[[0m[31merror[0m] [0m[0m             ^[0m
+[0m[[0m[31merror[0m] [0m[0mC:\App project\Gitterific\app\model\ListRepositories.java:8:14: ListRepositories is already defined as class ListRepositories[0m
+[0m[[0m[31merror[0m] [0m[0mpublic class ListRepositories {[0m
+[0m[[0m[31merror[0m] [0m[0m             ^[0m
+[0m[[0m[31merror[0m] [0m[0mC:\App project\Gitterific\app\services\CommitsFetching.java:15:14: CommitsFetching is already defined as class CommitsFetching[0m
+[0m[[0m[31merror[0m] [0m[0mpublic class CommitsFetching {[0m
+[0m[[0m[31merror[0m] [0m[0m             ^[0m
+[0m[[0m[31merror[0m] [0m[0mC:\App project\Gitterific\app\services\IssueFetching.java:15:14: IssueFetching is already defined as class IssueFetching[0m
+[0m[[0m[31merror[0m] [0m[0mpublic class IssueFetching {[0m
+[0m[[0m[31merror[0m] [0m[0m             ^[0m
+[0m[[0m[31merror[0m] [0m[0mC:\App project\Gitterific\app\services\PullsFetching.java:15:14: PullsFetching is already defined as class PullsFetching[0m
+[0m[[0m[31merror[0m] [0m[0mpublic class PullsFetching {[0m
+[0m[[0m[31merror[0m] [0m[0m             ^[0m
+[0m[[0m[31merror[0m] [0m[0mC:\App project\Gitterific\app\services\RepositoryFetching.java:15:14: RepositoryFetching is already defined as class RepositoryFetching[0m
+[0m[[0m[31merror[0m] [0m[0mpublic class RepositoryFetching {[0m
+[0m[[0m[31merror[0m] [0m[0m             ^[0m
+[0m[[0m[31merror[0m] [0m[0m7 errors found[0m

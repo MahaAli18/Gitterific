@@ -46,20 +46,11 @@ public class RepositoryFetching {
     String topicword="";
     public List<ListRepositories> getList(JsonNode data) throws InterruptedException, ExecutionException {
     	
-    	
-    	return StreamSupport.stream(data.get("items").spliterator(), false)
-    	.map(items -> 
-    	
-    		
-    		//repos.add(new ListRepositories(login,name,user_url,issues_url,visibility,commits_url,topicword));
-    		new ListRepositories(items.get("owner").get("login").asText(),items.get("name").asText(),items.get("url").asText().replaceAll("http.*?\\s", " "),items.get("issues_url").asText(),items.get("visibility").asText(),items.get("commits_url").asText(), items.get("pulls_url").asText(), items.get("description").asText(),items.get("topics"))).collect(Collectors.toList());
-    	
-		
-		
-
-		
-		
-		
-    	
+		return StreamSupport.stream(data.get("items").spliterator(), false)
+				.map(items -> new ListRepositories(items.get("owner").get("login").asText(), items.get("name").asText(),
+						items.get("url").asText().replaceAll("http.*?\\s", " "), items.get("issues_url").asText(),
+						items.get("visibility").asText(), items.get("commits_url").asText(),
+						items.get("pulls_url").asText(), items.get("description").asText(), items.get("topics")))
+				.collect(Collectors.toList());
     }
 }
