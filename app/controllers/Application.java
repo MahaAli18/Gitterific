@@ -3,6 +3,14 @@ package controllers;
 import javax.inject.Inject;
 import java.util.Collections;
 import com.fasterxml.jackson.databind.JsonNode;
+
+import actors.CommitsActor;
+import actors.IssuesActor;
+import actors.PullsActor;
+import actors.RepositoryActor;
+import actors.TimeActor;
+import akka.actor.ActorSystem;
+import akka.stream.Materializer;
 import model.ListRepositories;
 import model.ListTopicsRepos;
 import model.UserRepos;
@@ -11,8 +19,8 @@ import model.ListRepoDetails;
 import play.mvc.*;
 import play.data.DynamicForm;
 import play.data.FormFactory;
+import play.libs.streams.ActorFlow;
 import play.libs.ws.*;
-import play.mvc.Result;
 import services.RepositoryFetching;
 import services.TopicsRepositoryFetching;
 import services.UserFetching;
@@ -22,6 +30,7 @@ import services.PullsFetching;
 import services.CommitsFetching;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.concurrent.CompletableFuture;
 import java.util.concurrent.CompletionStage;
 import java.util.concurrent.ExecutionException;
 import views.html.*;
@@ -38,24 +47,51 @@ public class Application extends Controller implements WSBodyReadables {
 	 * @author maha_
 	 * Rendering the repositories list
 	 */
+	@Inject
+    private Materializer materializer;
+	private final WSClient ws;
+    private ActorSystem actorSystem;
     
-	@Inject 
-	WSClient ws;
-    int count=0;
 	List<ListRepositories> get_repos = new ArrayList<ListRepositories>();
 	List<ListTopicsRepos> topics = new ArrayList<ListTopicsRepos>();
+	int count=0;
+	
+	@Inject
+    public Application(WSClient ws, ActorSystem actorSystem) {
+        this.ws = ws;
+        this.actorSystem = actorSystem;
+        actorSystem.actorOf(TimeActor.props(), "timeActor");
+    }
 	
 	/**
 	 * @return repos 
 	 * @throws InterruptedException error handling
 	 * @throws ExecutionException thrown when attempting to retrieve the result of a taskthat aborted by throwing an exception
 	 */
-
-	public Result index() throws InterruptedException, ExecutionException {
-		List<ListRepositories> repos = new ArrayList<ListRepositories>();
-		get_repos = new ArrayList<ListRepositories>();
-		return ok(index.render(repos));
-	}
+	
+	public CompletionStage<Result> index() {
+        return CompletableFuture.supplyAsync(()->ok(views.html.index.render()));
+    }
+	
+	public CompletionStage<Result> navToRepositoryDetailsWS(String login, String name, String description) {
+        return CompletableFuture.supplyAsync(()->ok(views.html.repository.render(login, name, description)));
+    }
+	
+	public WebSocket fetchRepositoriesWS() {
+        return WebSocket.Json.accept(request -> ActorFlow.actorRef(wst -> RepositoryActor.props(ws, wst), actorSystem, materializer));
+    }
+	
+	public WebSocket fetchIssuesWS() {
+		return WebSocket.Json.accept(request -> ActorFlow.actorRef(wst -> IssuesActor.props(ws, wst), actorSystem, materializer));
+    }
+	
+	public WebSocket fetchCommitsWS() {
+		return WebSocket.Json.accept(request -> ActorFlow.actorRef(wst -> CommitsActor.props(ws, wst), actorSystem, materializer));
+    }
+	
+	public WebSocket fetchPullsWS() {
+		return WebSocket.Json.accept(request -> ActorFlow.actorRef(wst -> PullsActor.props(ws, wst), actorSystem, materializer));
+    }
   
 	/**
 	 * @author maha_
@@ -95,7 +131,7 @@ public class Application extends Controller implements WSBodyReadables {
     		 }
         
 		this.query = query;
-		return ok(index.render(get_repos));
+		return ok(index.render());
 	}
 	
 	/**
@@ -119,20 +155,24 @@ public class Application extends Controller implements WSBodyReadables {
 			String name, String description) throws InterruptedException, ExecutionException {
 		this.issuesUrl = issuesUrl; this.commitsUrl = commitsUrl; this.pullsUrl = pullsUrl;
 		this.login = login; this.name = name; this.description = description; this.query = query;
+		
 		return fetchIssues();
 	}
 
+	
 	public Result fetchIssues() throws InterruptedException, ExecutionException {
 		List<ListRepoDetails> issues = new ArrayList<ListRepoDetails>();
 		IssueFetching issueService = new IssueFetching();
-		System.out.println("URL IS = " + issuesUrl.replace("{/number}", ""));
+		
+		System.out.println("URL IS ============================================================= " + issuesUrl.replace("{/number}", ""));
 		WSRequest request = ws.url(issuesUrl.replace("{/number}", "")).addHeader("Content-Type", "application/json")
 				.addQueryParameter("sort", "updated").addQueryParameter("order", "desc")
 				.addQueryParameter("per_page", "20").addQueryParameter("page", "1");
-
+		
 		CompletionStage<JsonNode> jsonPromise = request.get().thenApply(x -> x.getBody(json()));
 		issues = issueService.getIssues(jsonPromise.toCompletableFuture().get());
-		return ok(repository.render(issues, login, name, description, "Issues"));
+		//return ok(repository.render(issues, login, name, description, "Issues"));
+		return ok(repository.render(login, name, description));
 	}
 
 	public Result fetchPulls() throws InterruptedException, ExecutionException {
@@ -145,8 +185,8 @@ public class Application extends Controller implements WSBodyReadables {
 
 		CompletionStage<JsonNode> jsonPromise = request.get().thenApply(x -> x.getBody(json()));
 		pulls = pullsService.getPulls(jsonPromise.toCompletableFuture().get());
-
-		return ok(repository.render(pulls, login, name, description, "Pull Requests"));
+		return ok(repository.render(login, name, description));
+		//return ok(repository.render(pulls, login, name, description, "Pull Requests"));
 	}
 
 	public Result fetchCommits() throws InterruptedException, ExecutionException {
@@ -159,8 +199,8 @@ public class Application extends Controller implements WSBodyReadables {
 
 		CompletionStage<JsonNode> jsonPromise = request.get().thenApply(x -> x.getBody(json()));
 		commits = commitService.getCommits(jsonPromise.toCompletableFuture().get());
-
-		return ok(repository.render(commits, login, name, description, "Commits"));
+		return ok(repository.render(login, name, description));
+		//return ok(repository.render(commits, login, name, description, "Commits"));
 	}
 
 	public Result back() throws InterruptedException, ExecutionException {
@@ -268,7 +308,9 @@ public class Application extends Controller implements WSBodyReadables {
 		return ok(views.html.topics.render(topics));
 	}
 	
-	
+	/*public void seturl(String url) {
+		this.issuesUrl=url;
+	}*/
 	
 	
 	
