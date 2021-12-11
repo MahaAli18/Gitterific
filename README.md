@@ -1,5 +1,6 @@
 # Gitterific
 
+
 The user has to be able to enter new search terms on the output page, which will result in 10 more results
 being displayed (i.e., a second search will add 10 more results above the 10 results from the first search
 and so on . Keep at most 10 search queries, removing the oldest when more searches are
